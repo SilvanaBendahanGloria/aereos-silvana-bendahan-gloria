@@ -14,7 +14,6 @@ header {
   background-image: url(/images/window.jpg);
   background-repeat: no-repeat;
   object-fit: cover;
-  background-color: #25252b;
 }
 header div {
   width: 80vw;
@@ -30,6 +29,13 @@ header div a {
 }
 header div a:hover {
   color: #ac9de2;
+}
+
+footer ul li {
+  list-style-type: none;
+}
+footer ul li a {
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=style.css.map */

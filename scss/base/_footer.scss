@@ -1,7 +1,13 @@
-footer ul li {
-    list-style-type: none;
+footer {
+    h3, p {
+        font-size: 0.8em;
+    }
 
-    a {
-        text-decoration: none;
+    ul li {
+        list-style-type: none;
+
+        a {
+            text-decoration: none;
+        }
     }
 }

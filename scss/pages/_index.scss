@@ -1,0 +1,31 @@
+main {
+    background: linear-gradient(to right, #1b7e4c, #b9f0d2);
+}
+
+.cotizacion {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    h2 {
+        line-height: 2em;
+        font-size: 2em;
+    }
+}
+
+.boton {
+    position: sticky;
+    bottom: 0;
+
+    a {
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+            font-size: larger;
+            color: black;
+        }
+    }
+}
+ 

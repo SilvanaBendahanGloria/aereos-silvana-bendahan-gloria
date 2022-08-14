@@ -25,7 +25,7 @@
     <title>Cotizador de Aéreos</title>
 </head>
 <body>
-    <header class="bg-dark">
+    <header class="bg-dark" id="inicio">
         <div>
             <a href="#main">EMPEZÁ A VOLAR</a>
         </div>
@@ -33,30 +33,82 @@
 
     <main id="main">
         <h1>Cotizá tu pasaje aéreo en pocos pasos:</h1>
-        <h2>1) ¿Cuántos pasajeros son?</h2>
-        <h2>2) Ingresá la edad de cada pasajero</h2>
-        <h2>3) El viaje es ¿sólo Ida o Ida y Vuelta?</h2>
-        <h2>4) ¿Cómo vas a pagar?</h2>
-        <h2>5) ¿Sos consumidor final?</h2>
-        <h2>El monto total a pagar para.... pasajeros en viaje ...... pagando ...... (con/sin IVA) es de: $AR.....</h2>
+        <section class="cotizacion">
+            <div>
+               <h2>1) ¿Cuántos pasajeros son?</h2>
+                <input class="form-control form-control-sm" type="text" placeholder="Ingresá el total de pasajeros que viajarán" aria-label=".form-control-sm example"> 
+            </div>
+            <div>
+                <h2>2) Ingresá la edad de cada pasajero</h2>
+                <input class="form-control form-control-sm" type="text" placeholder="Ingresá el total de pasajeros que viajarán" aria-label=".form-control-sm example">
+            </div>
+            <div>
+                <h2>3) El viaje es ¿sólo Ida o Ida y Vuelta?</h2>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Seleccioná</option>
+                    <option value="1">Ida</option>
+                    <option value="2">Ida y Vuelta</option>
+                  </select>
+            </div>
+            <div>
+                <h2>4) ¿Cómo vas a pagar?</h2>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Seleccioná</option>
+                    <option value="1">Efectivo</option>
+                    <option value="2">Código QR</option>
+                    <option value="3">Tarjeta de Crédito</option>
+                </select>
+            </div>
+            <div>
+                <select class="form-select" aria-label="Disabled select example" disabled>
+                    <option selected>Si seleccionaste "pago con Tarjeta de Crédito, ¿en cuántas cuotas querés pagar?</option>
+                    <option value="1">en 3 cuotas</option>
+                    <option value="2">en 6 cuotas</option>
+                    <option value="3">en 12 cuotas</option>
+                </select>
+            </div>
+            <div>
+               <h2>5) ¿Sos consumidor final?</h2> 
+               <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Si, soy Consumidor Final
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  No, necesito factura con IVA discriminado
+                </label>
+              </div>
+            </div>
+            <div>
+                <button type="button" class="btn btn-info btn-lg">Pedir presupuesto</button>
+            </div>
+            <div>
+              <h2>Listo! El monto total a pagar para.... pasajeros en viaje ...... pagando ...... (con/sin IVA) es de:</h2>  
+              <input class="form-control form-control-lg" type="text" placeholder="$AR" aria-label=".form-control-lg example">
+            </div>                    
+        </section>
     </main>
 
+    <div class="d-flex justify-content-center boton">
+        <button type="button" class="btn btn-danger"><a href="#inicio">Inicio</a></button>
+    </div>
+
     <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
-        <div class="container">
-            <p>Créditos foto ventanilla de avión: <a href="https://unsplash.com/@sashafreemind?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sasha  Freemind</a> en <a href="https://unsplash.com/es/s/fotos/plane?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
+        <div class="container-fluid">
+            <h3>Desarrolladora Web: Silvana Bendahan Gloria. Mirá mis trabajos en <a href="https://github.com/SilvanaBendahanGloria" target="_blank">Github</a></h3>
         </div>
-        
-
-        <p>
-        </p>
-
-
+        <div class="container-fluid">
+            <p>Créditos foto ventanilla de avión: <a href="https://unsplash.com/@sashafreemind?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank">Sasha  Freemind</a> en <a href="https://unsplash.com/es/s/fotos/plane?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank">Unsplash</a></p>
+        </div>
     </footer>
 
     <!--BOOTSTRAP--> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
     <!--JS--> 
-    <script src="js/main.js"></script>
+    <script src="js/main."></script>
 </body>
 </html>

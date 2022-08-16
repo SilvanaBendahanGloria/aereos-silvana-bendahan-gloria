@@ -3,7 +3,7 @@ let tarifa_impuestos = tarifa_base * 0.65;
 
 let cant_pasajeros = parseInt (prompt( "¿Cuántos pasajeros van a viajar?"));
 
-let edad_pasajero =  "";
+/*let edad_pasajero =  "";
 
 for (i=0; i<cant_pasajeros; i++) {
     edad_pasajero = parseInt(prompt("Ingrese la edad de/del los pasajero/s"));
@@ -25,16 +25,22 @@ let tarifa_grupal = ""; //sumar la tarifa_edad de cada pasajero segun cant_pasaj
 
 for (i=0; i < cant_pasajeros; i++) {
     tarifa_grupal = tarifa_edad + 0;
-}
+}*/
 
 let tramos = prompt ("¿Es un viaje de IDA? Ingrese 1   ¿o es un viaje de IDA y VUELTA? Ingrese 2");
 
 let tarifa_tramos;
 
-if (tramos == 1) {
+/*if (tramos == 1) {
     tarifa_tramos = tarifa_grupal * 0.75;
 } else {
     tarifa_tramos = tarifa_grupal;
+}*/
+
+if (tramos == 1) {
+    tarifa_tramos = ((tarifa_base + tarifa_impuestos) * cant_pasajeros) * 0.75;
+} else {
+    tarifa_tramos = ((tarifa_base + tarifa_impuestos) * cant_pasajeros);
 }
 
 let pago = prompt ("¿Cómo va a pagar? En efectivo: Ingrese 1; con código QR: Ingrese 2 o con tarjeta de crédito: Ingrese: 3");

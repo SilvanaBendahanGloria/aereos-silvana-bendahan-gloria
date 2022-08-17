@@ -1,17 +1,15 @@
 main {
     background: linear-gradient(to right, #1b7e4c, #b9f0d2);
-}
-
-.cotizacion {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
+    padding: 0 2vw 0 2vw;   
     
     h2 {
         line-height: 2em;
-        font-size: 2em;
+        font-size: 1.5em;
     }
+}
+
+.total {
+    padding: 5vh 0 5vh 0;
 }
 
 .boton {

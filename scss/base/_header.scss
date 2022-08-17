@@ -24,3 +24,13 @@ header {
     }   
 }
     
+@media screen and (max-width:450px) {
+    header {
+        background-image: none;
+        background-color: #000000;
+
+        div a {
+           font-size: 2em; 
+        }
+    }
+}

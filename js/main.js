@@ -1,11 +1,5 @@
 //Variables
-let ingreso; 
-
-let impuestos;
-
 let cant_pasajeros; 
-
-let edad_pasajero;
 
 let tramos; 
 
@@ -19,6 +13,11 @@ let consumidor;
 
 let tarifa_consumidor;
 
+
+
+//Inicio
+let ingreso = prompt ("¿A que ciudad vas a viajar?");
+
 //Destinos: tarifa_base
 class Destino {
     constructor (nombre, tarifa, distancia) {
@@ -30,35 +29,45 @@ class Destino {
     tarifa_base () {
         return this.tarifa;
     }
+
 };
+    
 
 let lugar1 = new Destino ("París", 1000, 11043);
 let lugar2 = new Destino ("Nueva York", 800, 8521);
 let lugar3 = new Destino ("Tokyo", 2200, 18362);
 let lugar4 = new Destino ("Ciudad del Cabo", 1800, 6865);
 
-//console.log (lugar1.tarifa_base());
 
-ingreso = prompt ("¿A que ciudad vas a viajar?");
 
-//Tarifa Impuestos
-function tarifa_impuestos (){
-    if (ingreso = lugar1.nombre) {
-        impuestos = lugar1.tarifa_base() * 1.65
-    } else if (ingreso = lugar2.nombre) {
-        impuestos = lugar2.tarifa_base() * 1.65
-    } else if (ingreso = lugar3.nombre) {
-        impuestos = lugar3.tarifa_base() * 1.65
-    } else if (ingreso = lugar4.nombre) {
-        impuestos = lugar4.tarifa_base() * 1.65
-    } alert ("No volamos a ese destino")
-};
+function tarifa_impuestos (lugar){
+    if (lugar == lugar1.nombre) {
+        return lugar1.tarifa_base() * 1.65
+    } else if (lugar == lugar2.nombre) {
+       return lugar2.tarifa_base() * 1.65;
+    } else if (lugar  == lugar3.nombre) {
+       return lugar3.tarifa_base() * 1.65
+    } else if (lugar  == lugar4.nombre) {
+       return lugar4.tarifa_base() * 1.65
+    } else {
+        alert ("No volamos a ese destino");
+    }
+        
+}
+
+tarifa_impuestos (ingreso);
+
+let tarifa_con_impuestos = tarifa_impuestos (ingreso);
+
+console.log (lugar2.tarifa_base()); //ok
+console.log (tarifa_impuestos (ingreso));  //ok
+console.log (tarifa_con_impuestos);
 
 
 //Cantidad de pasajeros
 cant_pasajeros = parseInt (prompt ("¿Cuántos pasajeros van a viajar?"));
 
-let lista_pasajeros = []; //lista_pasajeros = [40 (años), 5 (años), 30 (años)]
+let lista_pasajeros = []; 
 
 class Pasajeros {
     constructor (edad) {
@@ -66,49 +75,71 @@ class Pasajeros {
     }
 };
 
-for (let i=0; i < cant_pasajeros; i++) {
-    edad = parseInt(prompt("Ingrese la edad de/del los pasajero/s"));
-}
 
-for (let i=0; i<cant_pasajeros; i++) {
+for (let i=0; i < cant_pasajeros; i++) {
+    
+    edad = parseInt(prompt("Ingrese la edad de/del los pasajero/s"));
     
     let nuevo_pasajero = new Pasajeros (edad);
 
     lista_pasajeros.push (nuevo_pasajero);
-};
+    
+}
 
-//Edades: tarifa_edad
-function tarifa_edad () {
-    if(edad<2) {
-        tarifa_edad = impuestos * 0.1;
-    } else if (edad >= 2 && edad < 12) {
-        tarifa_edad = impuestos * 0.5;
-    } else if (edad >= 65) {
-        tarifa_edad = impuestos * 0.8;
+console.log (lista_pasajeros); //ok
+
+
+//Tarifa de todos los pasajeros: tarifa_grupal
+
+//mi arreglo original es lista_pasajeros
+
+function tarifa_edad (edad_pasajero){
+    if(edad_pasajero < 2) {
+        return tarifa_con_impuestos * 0.1;
+       
+
+    } else if (edad_pasajero >= 2 && edad_pasajero < 12) {
+        return tarifa_con_impuestos * 0.5;
+
+
+    } else if (edad_pasajero >= 65) {
+        return tarifa_con_impuestos * 0.8;
+
     } else {
-        tarifa_edad = impuestos;
+        return tarifa_con_impuestos
     }
+}
+
+let tarifazo = lista_pasajeros.map (tarifa_edad (edad)); //tokyo - 1 año es ok 363$ la tarifa!
+console.log (tarifazo); //Uncaught TypeError: 363 is not a function at Array.map (<anonymous>) at main.js:113:32 (?????????)
+
+
+
+
+
+
+
+//Sumatoria del array tarifazo : suma
+
+/*function sumar_tarifazo (acu, precio) {
+    acu = acu + precio.noseque ; //precio. que????
+    return acu
 };
 
-//Tarifa de todos los pasajeros: tarifa_grupo
-let tarifa_grupal = [];  //tarifa_grupal = [($) 1500, ($) 2000, ($) 1800]
+let suma = tarifazo.reduce (sumar_tarifazo);
+console.log (suma);*/
 
-class Grupo {
-    constructor (tarifa) {
-        this.tarifa = tarifa;  //????
-    }
-}
 
-for (let i=0; i < cant_pasajeros; i++) {
-    tarifa_edad = new Grupo (tarifa);
-    tarifa_grupal.push (tarifa_edad);
-}
-
-//Sumatoria de los objetos (Grupo) del arreglo (tarifa_grupal):
 let suma;
-for (let i =0; i < tarifa_grupal.length; i++) {
-    suma += tarifa_grupal [i];
+
+for (let i =0; i < tarifazo.length; i++) {
+
+    suma += tarifazo [i];
+
 }
+
+console.log (suma);
+
 
 //Ida o I/V: tarifa_tramos
 tramos = prompt ("¿Es un viaje de IDA? Ingrese 1 ¿o es un viaje de IDA y VUELTA? Ingrese 2");
@@ -147,6 +178,5 @@ if (consumidor == 1) {
 
 } else {
     tarifa_consumidor = tarifa_pago;
-    alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor + " sin IVA.");
+    alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor + " sin IVA.-");
 }
-

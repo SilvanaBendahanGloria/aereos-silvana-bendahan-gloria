@@ -1,4 +1,6 @@
 //Variables
+let ingreso;
+
 let cant_pasajeros; 
 
 let tramos; 
@@ -16,7 +18,7 @@ let tarifa_consumidor;
 
 
 //Inicio
-let ingreso = prompt ("¿A que ciudad vas a viajar?");
+ingreso = (prompt ("¿A que ciudad vas a viajar?")).toUpperCase ();
 
 //Destinos: tarifa_base
 class Destino {
@@ -33,24 +35,35 @@ class Destino {
 };
     
 
-let lugar1 = new Destino ("París", 1000, 11043);
-let lugar2 = new Destino ("Nueva York", 800, 8521);
-let lugar3 = new Destino ("Tokyo", 2200, 18362);
-let lugar4 = new Destino ("Ciudad del Cabo", 1800, 6865);
+let lugar1 = new Destino ("PARIS", 1000, 11043);
+let lugar2 = new Destino ("NUEVA YORK", 800, 8521);
+let lugar3 = new Destino ("TOKIO", 2200, 18362);
+let lugar4 = new Destino ("ESTAMBUL", 1800, 12237);
+
+
+
+let impuesto_gobierno = tarifa_base () * 0.65;
+
+let impuestos = tarifa_base () + impuesto_gobierno;
 
 
 
 function tarifa_impuestos (lugar){
     if (lugar == lugar1.nombre) {
-        return lugar1.tarifa_base() * 1.65
+        return impuestos
+
     } else if (lugar == lugar2.nombre) {
-       return lugar2.tarifa_base() * 1.65;
+       return impuestos;
+
     } else if (lugar  == lugar3.nombre) {
-       return lugar3.tarifa_base() * 1.65
+       return impuestos
+
     } else if (lugar  == lugar4.nombre) {
-       return lugar4.tarifa_base() * 1.65
+       return impuestos
+
     } else {
         alert ("No volamos a ese destino");
+        //aca no puedo poner un break???
     }
         
 }
@@ -61,7 +74,7 @@ let tarifa_con_impuestos = tarifa_impuestos (ingreso);
 
 console.log (lugar2.tarifa_base()); //ok
 console.log (tarifa_impuestos (ingreso));  //ok
-console.log (tarifa_con_impuestos);
+console.log (tarifa_con_impuestos); //ok
 
 
 //Cantidad de pasajeros
@@ -89,56 +102,52 @@ for (let i=0; i < cant_pasajeros; i++) {
 console.log (lista_pasajeros); //ok
 
 
-//Tarifa de todos los pasajeros: tarifa_grupal
+//Tarifa de todos los pasajeros: tarifa_edad y tarifa_grupal
+let INF = tarifa_con_impuestos * 0.1 ;
+let CHD = tarifa_con_impuestos * 0.5 ;
+let SNR = tarifa_con_impuestos * 0.8 ;
+let ADT = tarifa_con_impuestos ;
 
-//mi arreglo original es lista_pasajeros
-
-function tarifa_edad (edad_pasajero){
-    if(edad_pasajero < 2) {
-        return tarifa_con_impuestos * 0.1;
+function tarifa_edad (edad){
+    if(edad < 2) {
+        return {
+            INF
+        };
        
+    } else if (edad >= 2 && edad < 12) {
+        return {
+            CHD
+        };
 
-    } else if (edad_pasajero >= 2 && edad_pasajero < 12) {
-        return tarifa_con_impuestos * 0.5;
-
-
-    } else if (edad_pasajero >= 65) {
-        return tarifa_con_impuestos * 0.8;
+    } else if (edad >= 65) {
+        return {
+            SNR
+        };
 
     } else {
-        return tarifa_con_impuestos
+        return {
+            ADT
+        }
     }
 }
 
-let tarifazo = lista_pasajeros.map (tarifa_edad (edad)); //tokyo - 1 año es ok 363$ la tarifa!
-console.log (tarifazo); //Uncaught TypeError: 363 is not a function at Array.map (<anonymous>) at main.js:113:32 (?????????)
+
+let tarifa_grupal = lista_pasajeros.map(tarifa_edad); //toma siempre el else de "ADT", coregir!!
+console.log (tarifa_grupal); //ok pero no :)
 
 
 
+//Sumatoria del array tarifa_grupal : suma
 
-
-
-
-//Sumatoria del array tarifazo : suma
-
-/*function sumar_tarifazo (acu, precio) {
-    acu = acu + precio.noseque ; //precio. que????
+function sumar_tarifa_grupal (acu, precio) {
+    acu = acu + precio.ADT ; //ojo no va ADT, corregir!!!!
     return acu
 };
 
-let suma = tarifazo.reduce (sumar_tarifazo);
-console.log (suma);*/
-
-
-let suma;
-
-for (let i =0; i < tarifazo.length; i++) {
-
-    suma += tarifazo [i];
-
-}
-
+let suma = tarifa_grupal.reduce (sumar_tarifa_grupal, 0) ;
 console.log (suma);
+
+console.log (suma); //esta mal, pero no tan mal
 
 
 //Ida o I/V: tarifa_tramos
@@ -173,10 +182,10 @@ if (pago == 1) {
 consumidor =  prompt ("Si es consumidor final ingrese: 1, sino ingrese: 2");
 
 if (consumidor == 1) {
-    tarifa_consumidor = tarifa_pago * 1.21;
+    tarifa_consumidor = Math.round (tarifa_pago * 1.21);
     alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor );
 
 } else {
-    tarifa_consumidor = tarifa_pago;
+    tarifa_consumidor = Math.round (tarifa_pago);
     alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor + " sin IVA.-");
 }

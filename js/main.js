@@ -1,6 +1,4 @@
 //Variables
-let ingreso;
-
 let cant_pasajeros; 
 
 let tramos; 
@@ -18,7 +16,7 @@ let tarifa_consumidor;
 
 
 //Inicio
-ingreso = (prompt ("¿A que ciudad vas a viajar?")).toUpperCase ();
+let ingreso = (prompt ("¿A que ciudad vas a viajar?")).toUpperCase ();
 
 //Destinos: tarifa_base
 class Destino {
@@ -41,25 +39,25 @@ let lugar3 = new Destino ("TOKIO", 2200, 18362);
 let lugar4 = new Destino ("ESTAMBUL", 1800, 12237);
 
 
+/*
+let impuesto_gobierno = Destino.tarifa * 0.65;
 
-let impuesto_gobierno = tarifa_base () * 0.65;
-
-let impuestos = tarifa_base () + impuesto_gobierno;
-
+let impuestos = Destino.tarifa + impuesto_gobierno;
+*/
 
 
 function tarifa_impuestos (lugar){
     if (lugar == lugar1.nombre) {
-        return impuestos
+        return lugar1.tarifa_base () * 1.65;
 
     } else if (lugar == lugar2.nombre) {
-       return impuestos;
+       return lugar2.tarifa_base () * 1.65;
 
     } else if (lugar  == lugar3.nombre) {
-       return impuestos
+       return lugar3.tarifa_base () * 1.65;
 
     } else if (lugar  == lugar4.nombre) {
-       return impuestos
+       return lugar4.tarifa_base () * 1.65;
 
     } else {
         alert ("No volamos a ese destino");

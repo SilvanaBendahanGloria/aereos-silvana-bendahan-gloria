@@ -4,7 +4,7 @@ Desafío Coderhouse JavaScript
 <h1 align="center">Hi 👋, I'm Silvana Bendahan Gloria</h1>
 <h3 align="center">A fresh starter web developer from Argentina</h3>
 
-- 🔭 I’m currently working on **my fisrt challenge for Coderhouse**
+- 🔭 I’m currently working on **my first challenge for Coderhouse**
 
 - 🌱 I’m currently learning **JavaScript**
 

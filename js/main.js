@@ -78,6 +78,7 @@ console.log (tarifa_con_impuestos); //ok
 
 cant_pasajeros = parseInt (prompt ("¿Cuántos pasajeros van a viajar?"));
 
+//let cant_pasajeros = document.getElementById ("num_pasajeros").value;
 
 let lista_pasajeros = []; 
 
@@ -187,9 +188,12 @@ consumidor =  prompt ("Si es consumidor final ingrese: 1, sino ingrese: 2");
 
 if (consumidor == 1) {
     tarifa_consumidor = Math.round (tarifa_pago * 1.21);
-    alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor );
+   // alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor );
 
 } else {
     tarifa_consumidor = Math.round (tarifa_pago);
-    alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor + " sin IVA.-");
+    //alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor + " sin IVA.-");
 }
+
+//let total = document.getElementById ("total").value;
+//total.innerText = tarifa_consumidor;

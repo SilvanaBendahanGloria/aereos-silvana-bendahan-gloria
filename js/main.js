@@ -68,8 +68,6 @@ tarifa_impuestos (ingreso);
 
 let tarifa_con_impuestos = tarifa_impuestos (ingreso);
 
-
-
 console.log (tarifa_impuestos (ingreso));  //ok
 console.log (tarifa_con_impuestos); //ok
 
@@ -78,7 +76,6 @@ console.log (tarifa_con_impuestos); //ok
 
 cant_pasajeros = parseInt (prompt ("¿Cuántos pasajeros van a viajar?"));
 
-//let cant_pasajeros = document.getElementById ("num_pasajeros").value;
 
 let lista_pasajeros = []; 
 
@@ -88,6 +85,10 @@ class Pasajeros {
         this.edad = edad
     }
     
+    get edad_pasajero () {
+        return tarifa_edad2 ();
+    }
+  
 };
 
 
@@ -112,32 +113,25 @@ let SNR = tarifa_con_impuestos * 0.8 ;
 let ADT = tarifa_con_impuestos ;
 
 
-function tarifa_edad (elemento){
-    if(elemento < 2) {
-       return {
-        INF
-        }
-    
-    } else if ((elemento >= 2) && (elemento < 12)) {
-       return {
-        CHD
-        }
+function tarifa_edad2 () {
+    for (let tarifa_edad of lista_pasajeros) {
+        if(edad < 2) {
+            return INF
+            
+        } else if ((edad >= 2) && (edad < 12)) {
+        return CHD
 
-    } else if (elemento >= 65) {
-       return {
-        SNR
-        }
+        } else if (edad >= 65) {
+        return SNR
 
-    } else {
-       return {
-        ADT
+        } else {
+        return ADT
         }
     }
 }
 
-tarifa_edad (edad);
 
-let tarifa_grupal = lista_pasajeros.map(tarifa_edad); //toma siempre el else de "ADT".....
+let tarifa_grupal = lista_pasajeros.map(tarifa_edad2(this.edad)); 
 console.log (tarifa_grupal); 
 
 
@@ -145,7 +139,7 @@ console.log (tarifa_grupal);
 //Sumatoria del array tarifa_grupal : suma
 
 function sumar_tarifa_grupal (acu, precio) {
-    acu = acu + precio.ADT ; //ojo no va ADT, corregir, pero no se como....
+    acu = acu + precio.tarifa_edad; 
     return acu
 };
 
@@ -188,12 +182,10 @@ consumidor =  prompt ("Si es consumidor final ingrese: 1, sino ingrese: 2");
 
 if (consumidor == 1) {
     tarifa_consumidor = Math.round (tarifa_pago * 1.21);
-   // alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor );
+   alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor );
 
 } else {
     tarifa_consumidor = Math.round (tarifa_pago);
-    //alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor + " sin IVA.-");
+    alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor + " sin IVA.-");
 }
 
-//let total = document.getElementById ("total").value;
-//total.innerText = tarifa_consumidor;

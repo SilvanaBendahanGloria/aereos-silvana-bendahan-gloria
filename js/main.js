@@ -77,18 +77,22 @@ console.log (tarifa_con_impuestos); //ok
 cant_pasajeros = parseInt (prompt ("¿Cuántos pasajeros van a viajar?"));
 
 
+
 let lista_pasajeros = []; 
+
+
+
+let INF = tarifa_con_impuestos * 0.1 ;
+let CHD = tarifa_con_impuestos * 0.5 ;
+let SNR = tarifa_con_impuestos * 0.8 ;
+let ADT = tarifa_con_impuestos ;
+
 
 
 class Pasajeros {
     constructor (edad) {
         this.edad = edad
-    }
-    
-    get edad_pasajero () {
-        return tarifa_edad2 ();
-    }
-  
+    }  
 };
 
 
@@ -107,21 +111,41 @@ console.log (lista_pasajeros); //ok
 
 //Tarifa de todos los pasajeros: tarifa_edad y tarifa_grupal
 
-let INF = tarifa_con_impuestos * 0.1 ;
-let CHD = tarifa_con_impuestos * 0.5 ;
-let SNR = tarifa_con_impuestos * 0.8 ;
-let ADT = tarifa_con_impuestos ;
+function tarifa_edad (elemento){
+    if(elemento < 2) {
+       return {
+        INF
+        }
+    
+    } else if ((elemento >= 2) && (elemento < 12)) {
+       return {
+        CHD
+        }
+    } else if (elemento >= 65) {
+       return {
+        SNR
+        }
+    } else {
+       return {
+        ADT
+        }
+    }
+}
 
 
+let tarifa_grupal = lista_pasajeros.map(tarifa_edad); //toma siempre el else de "ADT".....
+console.log (tarifa_grupal); 
+
+/*
 function tarifa_edad2 () {
     for (let tarifa_edad of lista_pasajeros) {
-        if(edad < 2) {
+        if(tarifa_edad < 2) {
             return INF
             
-        } else if ((edad >= 2) && (edad < 12)) {
+        } else if ((tarifa_edad >= 2) && (tarifa_edad < 12)) {
         return CHD
 
-        } else if (edad >= 65) {
+        } else if (tarifa_edad >= 65) {
         return SNR
 
         } else {
@@ -130,23 +154,23 @@ function tarifa_edad2 () {
     }
 }
 
+let sumar_tarifa = lista_pasajeros.map (tarifa_edad2, lista_pasajeros);
+console.log (sumar_tarifa);
 
-let tarifa_grupal = lista_pasajeros.map(tarifa_edad2(this.edad)); 
+//let tarifa_grupal = lista_pasajeros.forEach(tarifa_edad2(lista_pasajeros)); 
 console.log (tarifa_grupal); 
 
-
+*/
 
 //Sumatoria del array tarifa_grupal : suma
 
 function sumar_tarifa_grupal (acu, precio) {
-    acu = acu + precio.tarifa_edad; 
+    acu = acu + precio.ADT ; //ojo no va ADT, corregir, pero no se como....
     return acu
 };
 
 let suma = tarifa_grupal.reduce (sumar_tarifa_grupal, 0) ;
 console.log (suma);
-
-console.log (suma); 
 
 
 //Ida o I/V: tarifa_tramos
@@ -188,4 +212,97 @@ if (consumidor == 1) {
     tarifa_consumidor = Math.round (tarifa_pago);
     alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de $AR: " + tarifa_consumidor + " sin IVA.-");
 }
+
+
+//DOM
+
+/*BOTON: primer_paso*/
+let boton_primer_paso = document.getElementById("primer_paso");
+
+boton_primer_paso.addEventListener("click", enviar_datos_1);
+
+function enviar_datos_1() {
+   
+    /*SELECCIONAR LUGAR*/
+    let lugar = document.getElementById("lugar").form.id;
+   
+    /*TOMAR DATO DE CANTIDAD DE PASAJEROS*/ 
+    let num_pasajeros = document.getElementById("num_pasajeros").value;
+
+
+
+    /*SEGUN CANT_PASAJEROS: APARECEN CANTIDAD DE ESPACIOS DE "EDAD" A COMPLETAR" */
+            //for of
+    let texto_edades = document.createElement("h2");
+    texto_edades.innerText = "3) Ingresá la edad de cada pasajero:";
+    document.edades.appendChild(texto_edades); 
+
+    let completar_edades = document.createElement("input");
+    document.edades.appendChild(completar_edades);
+
+
+    /*SELECCIONO IDA O IDA Y VUELTA */
+    let texto_ida = document.createElement("h2");
+    texto_ida.innerText = "4) El viaje es ¿sólo Ida o Ida y Vuelta?";
+    document.ida.appendChild(texto_ida);
+
+    let opciones_ida = document.createElement("form");
+    /* como creo las opciones? 
+     Seleccioná
+            <select class="form-select">
+                <option value="1">Ida</option>
+                <option value="2">Ida y Vuelta</option>
+            </select>
+    */
+    document.ida.appendChild(opciones_ida);
+
+
+    /*FORMA DE PAGO */
+
+};
+
+
+
+/*SI FORMA DE PAGO ES TC, APARECEN CUOTAS*/
+
+
+
+
+/*CONSUMIDOR FINAL O NO */
+
+
+
+
+/*  BOTON PEDIR PRESUPUESTO
+
+let boton = document.getElementById ("boton_enviar");
+
+boton.addEventListener ("click", enviar_datos2);
+
+
+function enviar_datos2() {
+ 
+    let valor_total = document.createElement ("div");
+    div.valor_total.innerText = tarifa_consumidor;
+    
+    let total = document.getElementById ("total");
+    valor_total.appendChild(total);
+
+};*/
+
+
+
+
+
+
+/*
+document.addEventListener ("DOMContentLoaded", function () {
+    mostrar_total ();
+});
+
+function mostrar_total () { 
+    
+}*/
+
+
 

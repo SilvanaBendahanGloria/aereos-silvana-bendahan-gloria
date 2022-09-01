@@ -34,54 +34,63 @@
     <main id="main">
         <h1>Cotizá tu pasaje aéreo en pocos pasos:</h1>
         <section>
+
             <div class="row">
                 <div class="col">
-                    <h2>1) Elegí tu destino</h2>
+                    <h2>1) Elegí tu destino:</h2>
                 </div>
                 <div class="col">
-                    <select class="form-select" aria-label="Default select">
-                        <option value="0">Seleccioná</option>
-                        <option value="1">París</option>
-                        <option value="2">Nueva York</option>
-                        <option value="2">Tokio</option>
-                        <option value="2">Estambul</option>
-                    </select>
+                    <form id="lugar">
+                        Seleccioná
+                        <select id="lugar_opcion" class="form-select">
+                            <option value="1">París</option>
+                            <option value="2">Nueva York</option>
+                            <option value="3">Tokio</option>
+                            <option value="4">Estambul</option>
+                        </select>
+                    </form>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col">
-                    <h2>2) ¿Cuántos pasajeros son?</h2>
+                    <h2>2) Cuantos pasajeros viajan:</h2>
                 </div>
                 <div class="col">
-                    <input id="num_pasajeros" class="form-control form-control-sm" type="text" placeholder="Ingresá el total de pasajeros que viajarán" aria-label=".form-control-sm"> 
+                    <input id="num_pasajeros" class="form-control form-control-sm" type="text" placeholder="Ingresá el total de pasajeros que viajarán"> 
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <h2>3) Ingresá la edad de cada pasajero</h2>
-                </div>
-                <div class="col">
-                    <input class="form-control form-control-sm" type="text" placeholder="Ingresá el total de pasajeros que viajarán" aria-label=".form-control-sm ">
+
+            <div>
+                <div class="row">
+                    <button id="primer_paso">Siguiente</button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <h2>4) El viaje es ¿sólo Ida o Ida y Vuelta?</h2>
+           
+            <div class="row" id="edades">
+                <div class="col" id="texto_edades">
+              
                 </div>
-                <div class="col">
-                    <select class="form-select" aria-label="Default select">
-                        <option value="0">Seleccioná</option>
-                        <option value="1">Ida</option>
-                        <option value="2">Ida y Vuelta</option>
-                    </select>
+                <div class="col" id="completar_edades">
+                
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
+
+            <div class="row" id="ida">
+                <div class="col" id="texto_ida">
+                    
+                </div>
+                <div class="col" id="opciones_ida">
+                    
+                </div>
+            </div>
+
+            <div class="row" id="pago">
+                <div class="col" id="texto_pago">
                     <h2>5) ¿Cómo vas a pagar?</h2>
                 </div>
-                <div class="col">
-                    <select class="form-select" aria-label="default select ">
+                <div class="col" id="opciones_pago">
+                    <select class="form-select">
                         <option value="0">Seleccioná</option>
                         <option value="1">Efectivo</option>
                         <option value="2">Código QR</option>
@@ -89,12 +98,13 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+
+     <!--  <div class="row">
                 <div class="col">
                     <h3>Si seleccionaste "pago con Tarjeta de Crédito, ¿en cuántas cuotas querés pagar?</h3>
                 </div>
                 <div class="col">
-                    <select class="form-select" aria-label=" default select " disabled>
+                    <select class="form-select"  disabled>
                         <option value="0">Seleccioná</option>
                         <option value="1">en 3 cuotas</option>
                         <option value="2">en 6 cuotas</option>
@@ -123,20 +133,21 @@
             </div>
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <button type="submit" value = "enviar" class="btn btn-info btn-lg">Pedir presupuesto</button>
+                    <button id=" boton_enviar" type="submit" value = "enviar" class="btn btn-info btn-lg">Pedir presupuesto</button>
                 </div>
             </div>    
         </section>
-        <section class="total">
+        <section id="total">
             <div class="row">
                 <div  class="col">
                     <h2>Listo! El monto total a pagar es de:</h2> 
                 </div> 
-                <div class="col">
-                    <input id="total" class="form-control form-control-lg" type="text" placeholder="$AR" aria-label=".form-control-lg ">
+                <div class="col" id="valor_total">
+
+                  
                 </div>
             </div>
-        </section>        
+        </section>      -->   
     </main>
 
     <div class="d-flex justify-content-end boton">

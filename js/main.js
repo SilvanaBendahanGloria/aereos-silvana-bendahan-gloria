@@ -14,9 +14,10 @@ let consumidor;
 let tarifa_consumidor;
 
 
-
 //Inicio
 let ingreso = (prompt ("¿A que ciudad vas a viajar?")).toUpperCase ();
+
+let impuesto_dolares = 1.65;
 
 //Destinos: tarifa_base
 class Destino {
@@ -27,7 +28,7 @@ class Destino {
     }
 
     impuestos () {
-        return this.tarifa * 1.65;
+        return this.tarifa * impuesto_dolares;
     }
 };
     
@@ -46,12 +47,8 @@ function tarifa_impuestos (lugar){
     return encontrado.impuestos ();
 }
 
-tarifa_impuestos (ingreso);
 
 let tarifa_con_impuestos = tarifa_impuestos (ingreso);
-
-console.log (tarifa_impuestos (ingreso));  //ok
-console.log (tarifa_con_impuestos); //ok
 
 
 //Cantidad de pasajeros
@@ -66,19 +63,10 @@ let SNR = tarifa_con_impuestos * 0.8 ;
 let ADT = tarifa_con_impuestos ;
 
 
-
 class Pasajeros {
     constructor (edad) {
         this.edad = edad
     }  
-
-   /* set edad (edad) {
-        this.edad = edad
-    };
-
-    get edad () {
-        return this.edad;
-    };*/
 
 };
 
@@ -89,15 +77,9 @@ for (let i=0; i < cant_pasajeros; i++) {
     
     let nuevo_pasajero = new Pasajeros (edad);
 
-   /* nuevo_pasajero.edad = x;
-
-    nuevo_pasajero.edad*/
-
     lista_pasajeros.push (nuevo_pasajero);
 
 }
-
-console.log (lista_pasajeros); //ok
 
 
 //Tarifa de todos los pasajeros: tarifa_edad y tarifa_grupal
@@ -119,8 +101,6 @@ function tarifa_edad (edad){
 
 
 const tarifa_grupal = lista_pasajeros.map((x) => tarifa_edad(x.edad)); 
-console.log (tarifa_grupal); 
-
 
 
 //Sumatoria del array tarifa_grupal : suma
@@ -132,7 +112,6 @@ function sumar_tarifa_grupal (acu, precio) {
 
 
 const suma = tarifa_grupal.reduce((a,b,c,d) => sumar_tarifa_grupal (a,b), 0 ) ;
-console.log (suma);
 
 
 //Ida o I/V: tarifa_tramos
@@ -174,6 +153,7 @@ function tarjeta () {
 
 tarifa_pago = ajustar_tarifa_pago ();
 
+
 //Con o sin IVA (21%): tarifa_consumidor
 consumidor =  prompt ("Si es consumidor final ingrese: 1, sino ingrese: 2");
 
@@ -187,34 +167,67 @@ if (consumidor == 1) {
 }
 
 
+
 //DOM
+
+function tomar_lugar () {
+    /*SELECCIONAR LUGAR*/
+    let lugar = document.getElementById("lugar_opcion").selectedIndex;
+    let opcion_elegida = lugar.options [lugar];
+    let valor_elegido = opcion_elegida.value;
+    return valor_elegido;
+};
+
+function tomar_cantidad () {
+    /*TOMAR DATO DE CANTIDAD DE PASAJEROS*/ 
+    let num_pasajeros = document.getElementById("num_pasajeros").value;
+    return num_pasajeros;
+};
+
+
+function crear_inputs_edades () {
+    /*CREAR INPUTS SEGUN CANTIDAD DE PASAJEROS: SEGUN CANT_PASAJEROS: APARECEN CANTIDAD DE ESPACIOS DE "EDAD" A COMPLETAR" */
+    for (let i = 0; i < cant_pasajeros; i++) { 
+
+        let texto_edades = document.createElement("h2");
+        texto_edades.innerText = "3) Ingresá la edad de cada pasajero:";
+        document.edades.appendChild(texto_edades); 
+
+        let completar_edades = document.createElement("input");
+        document.edades.appendChild(completar_edades);
+    }
+};
+
+
+function crear_boton_edades () {
+    /*CREAR BOTON PARA DESPUES DE LAS EDADES */
+    let boton_con_edades = document.createElement ("button");
+    boton_con_edades.innerText = "Continuar";
+    document.boton_edades.appendChild(boton_con_edades);
+};
+
+
+function enviar_datos_1() {
+    tomar_lugar ();
+    tomar_cantidad ();
+    crear_inputs_edades ();
+    crear_boton_edades ();
+};
+
 
 /*BOTON: primer_paso*/
 let boton_primer_paso = document.getElementById("primer_paso");
 
 boton_primer_paso.addEventListener("click", enviar_datos_1);
-
-function enviar_datos_1() {
-   
-    /*SELECCIONAR LUGAR*/
-    let lugar = document.getElementById("lugar").form.id;
-   
-    /*TOMAR DATO DE CANTIDAD DE PASAJEROS*/ 
-    let num_pasajeros = document.getElementById("num_pasajeros").value;
+ 
 
 
 
-    /*SEGUN CANT_PASAJEROS: APARECEN CANTIDAD DE ESPACIOS DE "EDAD" A COMPLETAR" */
-            //for of
-    let texto_edades = document.createElement("h2");
-    texto_edades.innerText = "3) Ingresá la edad de cada pasajero:";
-    document.edades.appendChild(texto_edades); 
-
-    let completar_edades = document.createElement("input");
-    document.edades.appendChild(completar_edades);
 
 
-    /*SELECCIONO IDA O IDA Y VUELTA */
+
+
+/*SELECCIONO IDA O IDA Y VUELTA
     let texto_ida = document.createElement("h2");
     texto_ida.innerText = "4) El viaje es ¿sólo Ida o Ida y Vuelta?";
     document.ida.appendChild(texto_ida);
@@ -226,18 +239,14 @@ function enviar_datos_1() {
                 <option value="1">Ida</option>
                 <option value="2">Ida y Vuelta</option>
             </select>
-    */
-    document.ida.appendChild(opciones_ida);
+    
+    document.ida.appendChild(opciones_ida); */
 
 
     /*FORMA DE PAGO */
 
-};
-
-
 
 /*SI FORMA DE PAGO ES TC, APARECEN CUOTAS*/
-
 
 
 
@@ -245,15 +254,14 @@ function enviar_datos_1() {
 
 
 
-
-/*  BOTON PEDIR PRESUPUESTO
+/* BOTON PEDIR PRESUPUESTO
 
 let boton = document.getElementById ("boton_enviar");
 
-boton.addEventListener ("click", enviar_datos2);
+boton.addEventListener ("click", enviar_datos_x);
 
 
-function enviar_datos2() {
+function enviar_datos_x() {
  
     let valor_total = document.createElement ("div");
     div.valor_total.innerText = tarifa_consumidor;
@@ -262,10 +270,6 @@ function enviar_datos2() {
     valor_total.appendChild(total);
 
 };*/
-
-
-
-
 
 
 /*

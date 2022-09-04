@@ -168,25 +168,34 @@ if (consumidor == 1) {
 
 
 
+
+
 //DOM
 
 function tomar_lugar () {
-    /*SELECCIONAR LUGAR*/
+    //SELECCIONAR LUGAR
     let lugar = document.getElementById("lugar_opcion").selectedIndex;
     let opcion_elegida = lugar.options [lugar];
     let valor_elegido = opcion_elegida.value;
+    
     return valor_elegido;
 };
 
+//let ingreso = tomar_lugar();
+
+
 function tomar_cantidad () {
-    /*TOMAR DATO DE CANTIDAD DE PASAJEROS*/ 
+    //TOMAR DATO DE CANTIDAD DE PASAJEROS
     let num_pasajeros = document.getElementById("num_pasajeros").value;
-    return num_pasajeros;
+    console.log(num_pasajeros); 
 };
+
+//cant_pasajeros = tomar_cantidad ();
+
 
 
 function crear_inputs_edades () {
-    /*CREAR INPUTS SEGUN CANTIDAD DE PASAJEROS: SEGUN CANT_PASAJEROS: APARECEN CANTIDAD DE ESPACIOS DE "EDAD" A COMPLETAR" */
+    //CREAR INPUTS SEGUN CANTIDAD DE PASAJEROS: SEGUN CANT_PASAJEROS: APARECEN CANTIDAD DE ESPACIOS DE "EDAD" A COMPLETAR"
     for (let i = 0; i < cant_pasajeros; i++) { 
 
         let texto_edades = document.createElement("h2");
@@ -199,8 +208,12 @@ function crear_inputs_edades () {
 };
 
 
+//let edad = crear_inputs_edades ();
+
+
+
 function crear_boton_edades () {
-    /*CREAR BOTON PARA DESPUES DE LAS EDADES */
+    //CREAR BOTON PARA DESPUES DE LAS EDADES
     let boton_con_edades = document.createElement ("button");
     boton_con_edades.innerText = "Continuar";
     document.boton_edades.appendChild(boton_con_edades);
@@ -215,44 +228,160 @@ function enviar_datos_1() {
 };
 
 
-/*BOTON: primer_paso*/
+//BOTON: primer_paso
 let boton_primer_paso = document.getElementById("primer_paso");
 
 boton_primer_paso.addEventListener("click", enviar_datos_1);
  
 
 
-
-
-
-
-
-/*SELECCIONO IDA O IDA Y VUELTA
+function tipo_de_viaje () {
+    //SELECCIONO IDA O IDA Y VUELTA
     let texto_ida = document.createElement("h2");
     texto_ida.innerText = "4) El viaje es ¿sólo Ida o Ida y Vuelta?";
     document.ida.appendChild(texto_ida);
 
-    let opciones_ida = document.createElement("form");
-    /* como creo las opciones? 
-     Seleccioná
-            <select class="form-select">
-                <option value="1">Ida</option>
-                <option value="2">Ida y Vuelta</option>
-            </select>
+    let opciones_ida = document.createElement("select");
+    opciones_ida.setAttribute("id", "id_opciones_ida");
+    document.ida.appendChild(opciones_ida);
+     
+    let opciones_de_viaje = document.createElement("option");   
+    opciones_de_viaje.setAttribute("value", "0");   
+
+    let solo_ida = document.createTextNode("Sólo Ida");
+    opciones_de_viaje.appendChild(solo_ida);
+
+    document.getElementById("id_opciones_ida").appendChild(opciones_de_viaje);
     
-    document.ida.appendChild(opciones_ida); */
+    let opciones_de_viaje_2 = document.createElement("option");   
+    opciones_de_viaje_2.setAttribute("value", "1");   
+
+    let ida_y_vuelta = document.createTextNode("Ida y Vuelta");
+    opciones_de_viaje_2.appendChild(ida_y_vuelta);
+
+    document.getElementById("id_opciones_ida").appendChild(opciones_de_viaje_2);
+};
+
+// tramos = tipo_de_viaje ();
 
 
-    /*FORMA DE PAGO */
+function pago_en_cuotas () {
+    //SI FORMA DE PAGO ES TC, APARECEN CUOTAS
+    let pago_con_tarjeta = document.createElement("h3");
+    pago_con_tarjeta.innerText = "Seleccioná la cantidad de cuotas:";
+    document.tarjeta_de_credito.appendChild(pago_con_tarjeta);
 
 
-/*SI FORMA DE PAGO ES TC, APARECEN CUOTAS*/
+    let opciones_cuotas = document.createElement("select");
+    opciones_cuotas.setAttribute("id", "id_opciones_cuotas");
+    document.tarjeta_de_credito.appendChild(opciones_cuotas);
+
+     
+    let opciones_de_cuotas = document.createElement("option");   
+    opciones_de_cuotas.setAttribute("value", "0");   
+
+    let tres_cuotas = document.createTextNode("3 cuotas");
+    opciones_de_cuotas.appendChild(tres_cuotas);
+
+    document.getElementById("id_opciones_cuotas").appendChild(tres_cuotas);
+    
+
+    let opciones_de_cuotas_2 = document.createElement("option");   
+    opciones_de_cuotas_2.setAttribute("value", "1");   
+
+    let seis_cuotas = document.createTextNode("6 cuotas");
+    opciones_de_cuotas_2.appendChild(seis_cuotas);
+
+    document.getElementById("id_opciones_cuotas").appendChild(opciones_de_cuotas_2);
+
+
+    let opciones_de_cuotas_3 = document.createElement("option");   
+    opciones_de_cuotas_3.setAttribute("value", "2");   
+
+    let doce_cuotas = document.createTextNode("12 cuotas");
+    opciones_de_cuotas_3.appendChild(doce_cuotas);
+
+    document.getElementById("id_opciones_cuotas").appendChild(opciones_de_cuotas_3);    
+}
+
+ /*if (cuotas == 3) {
+            return tarifa_tramos * 1.30;
+        } else if (cuotas == 6) {
+            return tarifa_tramos * 1.6;
+        } else { 
+            return tarifa_tramos * 2.2;
+        }*/
+
+
+function forma_de_pago () {
+    //FORMA DE PAGO 
+    let como_vas_a_pagar = document.createElement("h2");
+    como_vas_a_pagar.innerText = "5) Seleccioná la forma de pago:";
+    document.pago.appendChild(como_vas_a_pagar);
+
+
+    let opciones_pago = document.createElement("select");
+    opciones_pago.setAttribute("id", "id_opciones_pago");
+    document.pago.appendChild(opciones_pago);
+
+     
+    let opciones_de_pago = document.createElement("option");   
+    opciones_de_pago.setAttribute("value", "0");   
+
+    let efectivo = document.createTextNode("Efectivo");
+    opciones_de_pago.appendChild(efectivo);
+
+    document.getElementById("id_opciones_pago").appendChild(opciones_de_pago);
+    
+
+    let opciones_de_pago_2 = document.createElement("option");   
+    opciones_de_pago_2.setAttribute("value", "1");   
+
+    let qr = document.createTextNode("Código QR");
+    opciones_de_pago_2.appendChild(qr);
+
+    document.getElementById("id_opciones_pago").appendChild(opciones_de_pago_2);
+
+
+    let opciones_de_pago_3 = document.createElement("option");   
+    opciones_de_pago_3.setAttribute("value", "2");   
+
+    let tarjeta_credito = document.createTextNode("Tarjeta de Crédito");
+    opciones_de_pago_3.appendChild(tarjeta_credito);
+
+    document.getElementById("id_opciones_pago").appendChild(opciones_de_pago_3);
+
+
+    if (opciones_de_pago_3 == true) {
+        return pago_en_cuotas ();
+    }
+};
+
+
+// pago = forma_de_pago ();
+
+
+
+function enviar_datos_2 () {
+    tipo_de_viaje ();
+    forma_de_pago ();
+
+}
+
+
+    
+
+
 
 
 
 /*CONSUMIDOR FINAL O NO */
 
-
+/*function myFunction() {
+    var x = document.createElement("INPUT");
+    x.setAttribute("type", "checkbox");
+    document.body.appendChild(x);
+  }*/
 
 /* BOTON PEDIR PRESUPUESTO
 

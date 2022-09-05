@@ -1,21 +1,20 @@
-/*//Variables
-let cant_pasajeros; 
-
-let tramos; 
-
+//Variables
 let tarifa_tramos;
-
-let pago; 
-
 let tarifa_pago;
-
-let consumidor;
-
 let tarifa_consumidor;
 
-
 //Inicio
-let ingreso = (prompt ("¿A que ciudad vas a viajar?")).toUpperCase ();
+//let ingreso = (prompt ("¿A que ciudad vas a viajar?")).toUpperCase ();
+
+function tomar_lugar () {
+    //SELECCIONAR LUGAR
+    let lugar = document.getElementById("lugar_opcion");
+    let tu_destino = lugar.selectedIndex;
+    let valor_elegido = lugar.options[tu_destino].value;
+    return valor_elegido;
+};
+
+let ingreso = tomar_lugar();
 
 let impuesto_dolares = 1.65;
 
@@ -41,27 +40,19 @@ let lugar4 = new Destino ("ESTAMBUL", 1800, 12237);
 
 function tarifa_impuestos (lugar){
 
-    const destinos = [lugar1, lugar2, lugar3, lugar4]; //lista de destinos
-    const encontrado = destinos.find (Destino => Destino.nombre == lugar)
+    let destinos = [lugar1, lugar2, lugar3, lugar4]; //lista de destinos
+    let encontrado = destinos.find (Destino => Destino.nombre == lugar)
 
     return encontrado.impuestos ();
 }
-
 
 let tarifa_con_impuestos = tarifa_impuestos (ingreso);
 
 
 //Cantidad de pasajeros
-
-cant_pasajeros = parseInt (prompt ("¿Cuántos pasajeros van a viajar?"));
+//cant_pasajeros = parseInt (prompt ("¿Cuántos pasajeros van a viajar?"));
 
 let lista_pasajeros = []; 
-
-let INF = tarifa_con_impuestos * 0.1 ;
-let CHD = tarifa_con_impuestos * 0.5 ;
-let SNR = tarifa_con_impuestos * 0.8 ;
-let ADT = tarifa_con_impuestos ;
-
 
 class Pasajeros {
     constructor (edad) {
@@ -70,122 +61,6 @@ class Pasajeros {
 
 };
 
-
-for (let i=0; i < cant_pasajeros; i++) {
-    
-    let edad = parseInt(prompt("Ingrese la edad de/del los pasajero/s"));
-    
-    let nuevo_pasajero = new Pasajeros (edad);
-
-    lista_pasajeros.push (nuevo_pasajero);
-
-}
-
-
-//Tarifa de todos los pasajeros: tarifa_edad y tarifa_grupal
-
-function tarifa_edad (edad){
-    if(edad < 2) {
-       return INF
-    
-    } else if ((edad >= 2) && (edad < 12)) {
-       return CHD
-
-    } else if (edad >= 65) {
-       return SNR
-
-    } else {
-       return ADT
-    }
-}
-
-
-const tarifa_grupal = lista_pasajeros.map((x) => tarifa_edad(x.edad)); 
-
-
-//Sumatoria del array tarifa_grupal : suma
-
-function sumar_tarifa_grupal (acu, precio) {
-    acu = acu + precio ; 
-    return acu
-};
-
-
-const suma = tarifa_grupal.reduce((a,b,c,d) => sumar_tarifa_grupal (a,b), 0 ) ;
-
-
-//Ida o I/V: tarifa_tramos
-tramos = prompt ("¿Es un viaje de IDA? Ingrese 1 ¿o es un viaje de IDA y VUELTA? Ingrese 2");
-
-if (tramos == 1) {
-    tarifa_tramos = suma * 0.75;
-} else {
-    tarifa_tramos = suma;
-}
-
-
-//Forma de pago: tarifa_pago
-pago = prompt ("¿Cómo va a pagar? En efectivo: Ingrese 1; con código QR: Ingrese 2 o con tarjeta de crédito: Ingrese: 3");
-
-function ajustar_tarifa_pago () {
-    if (pago == 1) {
-        return tarifa_tramos;
-
-    } else if (pago == 2) {
-        return tarifa_tramos * 1.10;
-
-    } else {
-        return tarjeta (); 
-    }
-}
-
-function tarjeta () {
-    let cuotas = parseInt(prompt ("¿En cuántas cuotas va a pagar? Ingrese 3, 6 o 12"));
-
-        if (cuotas == 3) {
-            return tarifa_tramos * 1.30;
-        } else if (cuotas == 6) {
-            return tarifa_tramos * 1.6;
-        } else { 
-            return tarifa_tramos * 2.2;
-        }
-}
-
-tarifa_pago = ajustar_tarifa_pago ();
-
-
-//Con o sin IVA (21%): tarifa_consumidor
-consumidor =  prompt ("Si es consumidor final ingrese: 1, sino ingrese: 2");
-
-if (consumidor == 1) {
-    tarifa_consumidor = Math.round (tarifa_pago * 1.21);
-   alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de USD: " + tarifa_consumidor );
-
-} else {
-    tarifa_consumidor = Math.round (tarifa_pago);
-    alert ("El total a pagar para " + cant_pasajeros + " pasajero/s es de USD: " + tarifa_consumidor + " sin IVA.-");
-}
-
-
-*/
-
-
-
-
-
-//DOM
-
-function tomar_lugar () {
-    //SELECCIONAR LUGAR
-    let lugar = document.getElementById("lugar_opcion").selectedIndex;
-    let opcion_elegida = lugar.options [lugar];
-    let valor_elegido = opcion_elegida.value;
-    return valor_elegido;
-};
-
-let ingreso = tomar_lugar();
-
-
 function tomar_cantidad () {
     //TOMAR DATO DE CANTIDAD DE PASAJEROS
     let num_pasajeros = document.getElementById("num_pasajeros").value;
@@ -193,7 +68,6 @@ function tomar_cantidad () {
 };
 
 let cant_pasajeros = tomar_cantidad ();
-
 
 function crear_inputs_edades () {
     //CREAR INPUTS SEGUN CANTIDAD DE PASAJEROS: APARECEN CANTIDAD DE ESPACIOS DE "EDAD" A COMPLETAR"
@@ -211,6 +85,49 @@ function crear_inputs_edades () {
 let edad = crear_inputs_edades ();
 
 
+for (let i=0; i < cant_pasajeros; i++) {
+        
+    let nuevo_pasajero = new Pasajeros (edad);
+
+    lista_pasajeros.push (nuevo_pasajero);
+}
+
+
+//Tarifa de todos los pasajeros: tarifa_edad y tarifa_grupal
+let INF = tarifa_con_impuestos * 0.1 ;
+let CHD = tarifa_con_impuestos * 0.5 ;
+let SNR = tarifa_con_impuestos * 0.8 ;
+let ADT = tarifa_con_impuestos ;
+
+function tarifa_edad (edad){
+    if(edad < 2) {
+       return INF
+    
+    } else if ((edad >= 2) && (edad < 12)) {
+       return CHD
+
+    } else if (edad >= 65) {
+       return SNR
+
+    } else {
+       return ADT
+    }
+}
+
+let tarifa_grupal = lista_pasajeros.map((x) => tarifa_edad(x.edad)); 
+
+
+//Sumatoria del array tarifa_grupal : suma
+function sumar_tarifa_grupal (acu, precio) {
+    acu = acu + precio ; 
+    return acu
+};
+
+let suma = tarifa_grupal.reduce((a,b,c,d) => sumar_tarifa_grupal (a,b), 0 ) ;
+
+
+//Ida o I/V: tarifa_tramos
+//tramos = prompt ("¿Es un viaje de IDA? Ingrese 1 ¿o es un viaje de IDA y VUELTA? Ingrese 2");
 
 function tipo_de_viaje () {
     //SELECCIONO IDA O IDA Y VUELTA
@@ -241,7 +158,15 @@ function tipo_de_viaje () {
 
 let tramos = tipo_de_viaje ();
 
+if (tramos == 1) {
+    tarifa_tramos = suma * 0.75;
+} else {
+    tarifa_tramos = suma;
+}
 
+
+//Forma de pago: tarifa_pago
+//pago = prompt ("¿Cómo va a pagar? En efectivo: Ingrese 1; con código QR: Ingrese 2 o con tarjeta de crédito: Ingrese: 3");
 
 function forma_de_pago () {
     //FORMA DE PAGO 
@@ -282,48 +207,7 @@ function forma_de_pago () {
     document.getElementById("id_opciones_pago").appendChild(opciones_de_pago_3);   
 };
 
-
 let pago = forma_de_pago ();
-
-
-function crear_boton_edades () {
-    //CREAR BOTON PARA DESPUES DE LAS EDADES
-    let boton_con_edades = document.createElement ("button");
-    boton_con_edades.innerText = "Continuar";
-    document.boton_edades.appendChild(boton_con_edades);
-};
-
-
-function enviar_datos_1() {
-    tomar_lugar ();
-    tomar_cantidad ();
-    crear_inputs_edades ();
-    tipo_de_viaje ();
-    forma_de_pago ();
-    crear_boton_edades ();
-};
-
-
-//BOTON: primer_paso
-let boton_primer_paso = document.getElementById("primer_paso");
-
-boton_primer_paso.addEventListener("click", enviar_datos_1);
- 
-
-
-function en_cuantas_cuotas () {
-
-    if (tres_cuotas == true) {
-    return tarifa_tramos * 1.30;
-
-    } else if (seis_cuotas == true) {
-        return tarifa_tramos * 1.6;
-
-    } else { 
-        return tarifa_tramos * 2.2;
-    }
-}
-
 
 function pago_en_cuotas () {
     //SI FORMA DE PAGO ES TC, APARECEN CUOTAS
@@ -362,11 +246,20 @@ function pago_en_cuotas () {
     opciones_de_cuotas_3.appendChild(doce_cuotas);
     
     document.getElementById("id_opciones_cuotas").appendChild(opciones_de_cuotas_3);    
-
-    en_cuantas_cuotas ();
 }
 
+function en_cuantas_cuotas () {
 
+    if (tres_cuotas == true) {
+    return tarifa_tramos * 1.30;
+
+    } else if (seis_cuotas == true) {
+        return tarifa_tramos * 1.6;
+
+    } else { 
+        return tarifa_tramos * 2.2;
+    }
+}
 
 if (forma_de_pago (tarjeta_de_credito)) {
     pago_en_cuotas ();
@@ -374,35 +267,44 @@ if (forma_de_pago (tarjeta_de_credito)) {
 
 let cuotas = pago_en_cuotas ();
 
+function ajustar_tarifa_pago () {
+    if (pago == opciones_pago[0]) {
+        return tarifa_tramos;
 
-/*function tipo_consumidor() {
+    } else if (pago == opciones_pago[1]) {
+        return tarifa_tramos * 1.10;
+
+    } else {
+        return pago_en_cuotas (); 
+    }
+}
+
+tarifa_pago = ajustar_tarifa_pago ();
+
+function tipo_consumidor() {
     //CONSUMIDOR FINAL O NO
-    var x = document.createElement("INPUT");
-    x.setAttribute("type", "checkbox");
-    document.body.appendChild(x);
-  }*/
-    
+    let pagas_iva = document.createElement("INPUT");
+    pagas_iva.setAttribute("type", "checkbox");
+    document.check_uno.appendChild(pagas_iva);
 
+    let no_pagas_iva = document.createElement("INPUT");
+    no_pagas_iva.setAttribute("type", "checkbox");
+    document.check_dos.appendChild(no_pagas_iva);
+} // faltan los 2 textos
+
+
+//falta tomar los valores del checkbox
 let consumidor =  tipo_consumidor();
- 
 
-function crear_boton_pago() {
-    //CREAR BOTON PARA PAGAR
-    let boton_forma_pago = document.createElement ("button");
-    boton_forma_pago.innerText = "Obtené tu presupuesto";
-    document.boton_forma_pago.appendChild(boton_forma_pago);
+//Con o sin IVA (21%): tarifa_consumidor
+//consumidor =  prompt ("Si es consumidor final ingrese: 1, sino ingrese: 2");
+
+if (consumidor == 1) {
+    tarifa_consumidor = Math.round (tarifa_pago * 1.21);
+   
+} else {
+    tarifa_consumidor = Math.round (tarifa_pago);
 }
-
-
-function enviar_datos_2 () {
-    pago_en_cuotas ();
-    tipo_consumidor ();
-    crear_boton_pago ();
-}
-
-
-boton_con_edades.addEventListener("click", enviar_datos_2);
-
 
 function precio_total(){
     let doy_total = document.createElement("h2");
@@ -415,11 +317,49 @@ function precio_total(){
 }
 
 
+//BOTONES
+function crear_boton_edades () {
+    //CREAR BOTON PARA DESPUES DE LAS EDADES
+    let boton_con_edades = document.createElement ("button");
+    boton_con_edades.innerText = "Continuar";
+    document.boton_edades.appendChild(boton_con_edades);
+};
+
+function enviar_datos_1() {
+    tomar_lugar ();
+    tomar_cantidad ();
+    crear_inputs_edades ();
+    tipo_de_viaje ();
+    forma_de_pago ();
+    crear_boton_edades ();
+};
+
+//BOTON: primer_paso
+let boton_primer_paso = document.getElementById("primer_paso");
+
+boton_primer_paso.addEventListener("click", enviar_datos_1);
+
+function crear_boton_pago() {
+    //CREAR BOTON PARA PAGAR
+    let boton_forma_pago = document.createElement ("button");
+    boton_forma_pago.innerText = "Obtené tu presupuesto";
+    document.boton_forma_pago.appendChild(boton_forma_pago);
+}
+
+function enviar_datos_2 () {
+    pago_en_cuotas ();
+    tipo_consumidor ();
+    crear_boton_pago ();
+}
+
+//BOTON 2
+boton_con_edades.addEventListener("click", enviar_datos_2);
+
+//BOTON PRESUPUESTO
 function enviar_datos_3() {
     precio_total ();
 };
     
-
 boton_forma_pago.addEventListener ("click", enviar_datos_3);
 
 

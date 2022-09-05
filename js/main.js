@@ -1,4 +1,4 @@
-//Variables
+/*//Variables
 let cant_pasajeros; 
 
 let tramos; 
@@ -167,7 +167,7 @@ if (consumidor == 1) {
 }
 
 
-
+*/
 
 
 
@@ -180,11 +180,10 @@ function tomar_lugar () {
     let lugar = document.getElementById("lugar_opcion").selectedIndex;
     let opcion_elegida = lugar.options [lugar];
     let valor_elegido = opcion_elegida.value;
-    
     return valor_elegido;
 };
 
-//let ingreso = tomar_lugar();
+let ingreso = tomar_lugar();
 
 
 function tomar_cantidad () {
@@ -193,12 +192,11 @@ function tomar_cantidad () {
     return num_pasajeros;
 };
 
-//cant_pasajeros = tomar_cantidad ();
-
+let cant_pasajeros = tomar_cantidad ();
 
 
 function crear_inputs_edades () {
-    //CREAR INPUTS SEGUN CANTIDAD DE PASAJEROS: SEGUN CANT_PASAJEROS: APARECEN CANTIDAD DE ESPACIOS DE "EDAD" A COMPLETAR"
+    //CREAR INPUTS SEGUN CANTIDAD DE PASAJEROS: APARECEN CANTIDAD DE ESPACIOS DE "EDAD" A COMPLETAR"
     for (let i = 0; i < cant_pasajeros; i++) { 
 
         let texto_edades = document.createElement("h2");
@@ -210,7 +208,7 @@ function crear_inputs_edades () {
     }
 };
 
-//let edad = crear_inputs_edades ();
+let edad = crear_inputs_edades ();
 
 
 
@@ -241,7 +239,7 @@ function tipo_de_viaje () {
     document.getElementById("id_opciones_ida").appendChild(opciones_de_viaje_2);
 };
 
-// tramos = tipo_de_viaje ();
+let tramos = tipo_de_viaje ();
 
 
 
@@ -285,7 +283,7 @@ function forma_de_pago () {
 };
 
 
-// pago = forma_de_pago ();
+let pago = forma_de_pago ();
 
 
 function crear_boton_edades () {
@@ -311,8 +309,6 @@ let boton_primer_paso = document.getElementById("primer_paso");
 
 boton_primer_paso.addEventListener("click", enviar_datos_1);
  
-
-
 
 
 function en_cuantas_cuotas () {
@@ -368,7 +364,7 @@ function pago_en_cuotas () {
     document.getElementById("id_opciones_cuotas").appendChild(opciones_de_cuotas_3);    
 
     en_cuantas_cuotas ();
-    }
+}
 
 
 
@@ -376,6 +372,7 @@ if (forma_de_pago (tarjeta_de_credito)) {
     pago_en_cuotas ();
 }
 
+let cuotas = pago_en_cuotas ();
 
 
 /*function tipo_consumidor() {
@@ -385,6 +382,9 @@ if (forma_de_pago (tarjeta_de_credito)) {
     document.body.appendChild(x);
   }*/
     
+
+let consumidor =  tipo_consumidor();
+ 
 
 function crear_boton_pago() {
     //CREAR BOTON PARA PAGAR
@@ -402,9 +402,6 @@ function enviar_datos_2 () {
 
 
 boton_con_edades.addEventListener("click", enviar_datos_2);
-
-
-
 
 
 function precio_total(){

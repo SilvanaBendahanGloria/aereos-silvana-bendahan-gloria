@@ -250,10 +250,10 @@ function pago_en_cuotas () {
 
 function en_cuantas_cuotas () {
 
-    if (tres_cuotas == true) {
+    if (pago_en_cuotas (tres_cuotas)) {
     return tarifa_tramos * 1.30;
 
-    } else if (seis_cuotas == true) {
+    } else if (pago_en_cuotas (seis_cuotas)) {
         return tarifa_tramos * 1.6;
 
     } else { 
@@ -281,30 +281,38 @@ function ajustar_tarifa_pago () {
 
 tarifa_pago = ajustar_tarifa_pago ();
 
+//Con o sin IVA (21%): tarifa_consumidor
+//consumidor =  prompt ("Si es consumidor final ingrese: 1, sino ingrese: 2");
+
 function tipo_consumidor() {
     //CONSUMIDOR FINAL O NO
+    let texto_iva = document.createElement('h4');
+    texto_iva.innerText = "Soy Consumidor Final";
+    document.check_uno.appendChild(texto_iva);
+
     let pagas_iva = document.createElement("INPUT");
     pagas_iva.setAttribute("type", "checkbox");
     document.check_uno.appendChild(pagas_iva);
 
+    let texto_sin_iva = document.createElement("h4");   
+    texto_sin_iva.innerText = "Necesito IVA Discriminado";
+    document.check_dos.appendChild(texto_sin_iva);
+
     let no_pagas_iva = document.createElement("INPUT");
     no_pagas_iva.setAttribute("type", "checkbox");
     document.check_dos.appendChild(no_pagas_iva);
-} // faltan los 2 textos
+} 
 
-
-//falta tomar los valores del checkbox
-let consumidor =  tipo_consumidor();
-
-//Con o sin IVA (21%): tarifa_consumidor
-//consumidor =  prompt ("Si es consumidor final ingrese: 1, sino ingrese: 2");
-
-if (consumidor == 1) {
-    tarifa_consumidor = Math.round (tarifa_pago * 1.21);
-   
-} else {
-    tarifa_consumidor = Math.round (tarifa_pago);
+function seleccion_consumidor () {
+    if (tipo_consumidor(check_uno)) {
+        tarifa_consumidor = Math.round (tarifa_pago * 1.21); 
+    }
+    else {
+         tarifa_consumidor = Math.round (tarifa_pago);
+    }
 }
+
+let consumidor =  seleccion_consumidor();
 
 function precio_total(){
     let doy_total = document.createElement("h2");
@@ -349,6 +357,7 @@ function crear_boton_pago() {
 function enviar_datos_2 () {
     pago_en_cuotas ();
     tipo_consumidor ();
+    seleccion_consumidor (); 
     crear_boton_pago ();
 }
 
@@ -361,14 +370,3 @@ function enviar_datos_3() {
 };
     
 boton_forma_pago.addEventListener ("click", enviar_datos_3);
-
-
-
-
-
-
-
-
-
-
-

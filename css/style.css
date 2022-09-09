@@ -16,7 +16,7 @@ header {
   object-fit: cover;
 }
 header div {
-  width: 80vw;
+  width: 65vw;
   padding: 40vh 0 0 30vw;
 }
 header div a {
@@ -29,6 +29,11 @@ header div a {
 }
 header div a:hover {
   color: #ac9de2;
+}
+
+#boton_bienvenida {
+  background-color: rgba(38, 38, 38, 0.1490196078);
+  border: none;
 }
 
 @media screen and (max-width: 450px) {

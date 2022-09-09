@@ -26,8 +26,10 @@
 </head>
 <body>
     <header class="bg-dark" id="inicio">
-        <div>
-            <a href="#main">EMPEZÁ A VOLAR</a>
+        <div>  
+            <input id="nombre_pasajero" class="form-control form-control-sm" type="text" placeholder="Ingresá tu nombre y hacé click">
+            <button id="boton_bienvenida"><a href="#main">EMPEZÁ A VOLAR</a></button>
+            
         </div>
     </header>
 
@@ -43,6 +45,7 @@
                     <form id="lugar">
                         Seleccioná
                         <select id="lugar_opcion" class="form-select">
+                            <option value="">Seleccioná el destino</option>
                             <option value="PARIS">París</option>
                             <option value="NUEVA YORK">Nueva York</option>
                             <option value="TOKIO">Tokio</option>
@@ -143,13 +146,12 @@
                    
 
                 </div> 
-                
             </div>
         </section>       
     </main>
 
-    <div class="d-flex justify-content-end boton">
-        <button type="button" class="btn btn-danger"><a href="#inicio">Inicio</a></button>
+    <div class="d-flex justify-content-end ">
+        <button type="button" class="btn btn-danger boton"><a href="#inicio">Inicio</a></button>
     </div>
 
     <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">

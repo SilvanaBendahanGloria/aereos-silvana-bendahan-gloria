@@ -2,7 +2,8 @@
 let tarifa_tramos;
 let tarifa_consumidor;
 let impuesto_dolares = 1.65;
-let lista_pasajeros = []; 
+let lista_pasajeros = [];
+let nombre_pasajero = document.getElementById("nombre_pasajero"); 
 let lugar = document.getElementById("lugar_opcion");
 let agregar_texto_edades = document.getElementById ("texto_edades");
 let agregar_completar_edades = document.getElementById ("completar_edades");
@@ -29,7 +30,7 @@ class Destino {
 
     impuestos () {
         return this.tarifa * impuesto_dolares;
-    }
+    }   
 };
     
 let lugar1 = new Destino ("PARIS", 1000, 11043);
@@ -47,16 +48,20 @@ class Pasajeros {
 };
 
 
-
 //let ingreso = (prompt ("¿A que ciudad vas a viajar?")).toUpperCase ();
 function tomar_lugar () {
     //SELECCIONAR LUGAR
-    let tu_destino = lugar.selectedIndex;
-    let valor_elegido = lugar.options[tu_destino].value;
-    return valor_elegido;
+    lugar.addEventListener ("change", (e) => {
+        e.preventDefault ();
+
+        let tu_destino = e.target.value;
+        //return tu_destino;
+        console.log (tu_destino)
+    })   
 };
 
 let ingreso = tomar_lugar();
+console.log(ingreso);
 
 function tarifa_impuestos (lugar){
     //Destinos: tarifa_con_impuestos
@@ -67,7 +72,7 @@ function tarifa_impuestos (lugar){
 }
 
 let tarifa_con_impuestos = tarifa_impuestos (ingreso);
-
+console.log (tarifa_con_impuestos);
 
 //cant_pasajeros = parseInt (prompt ("¿Cuántos pasajeros van a viajar?"));
 function tomar_cantidad () {
@@ -77,6 +82,7 @@ function tomar_cantidad () {
 };
 
 let cant_pasajeros = tomar_cantidad ();    
+
 
 function crear_inputs_edades () {
     //CREAR INPUTS SEGUN CANTIDAD DE PASAJEROS: APARECEN CANTIDAD DE ESPACIOS DE "EDAD" A COMPLETAR
@@ -134,7 +140,7 @@ function tipo_de_viaje () {
     //SELECCIONO IDA O IDA Y VUELTA
     let texto_ida = document.createElement("h2");
     texto_ida.innerText = "4) El viaje es ¿sólo Ida o Ida y Vuelta?";
-    document.agregar_texto_ida.appendChild(texto_ida);   //consola dice: Uncaught TypeError: Cannot read properties of undefined (reading 'appendChild')     at tipo_de_viaje (main.js:133:32)     at main.js:159:14
+    document.agregar_texto_ida.appendChild(texto_ida);   //consola dice: Uncaught TypeError: Cannot read properties of undefined (reading 'appendChild') at tipo_de_viaje 
 
     //crear nodo
     let opciones_ida = document.createElement("select");
@@ -339,12 +345,12 @@ function crear_boton_pago() {
 function enviar_datos_1(e) {
     e.preventDefault();
 
-    tomar_lugar (); //TOMA VALOR DESTINO
-    tomar_cantidad (); // TOMA VALOR CANTIDAD PASAJEROS
-    crear_inputs_edades (); // CREA INPUT EDADES
-    tipo_de_viaje (); //CREA IDA O VUELTA
-    forma_de_pago (); //CREA FOMRA DE PAGO
-    crear_boton_edades (); // CREA BOTON
+    tomar_lugar ; //TOMA VALOR DESTINO
+    tomar_cantidad ; // TOMA VALOR CANTIDAD PASAJEROS
+    crear_inputs_edades ; // CREA INPUT EDADES
+    tipo_de_viaje ; //CREA IDA O VUELTA
+    forma_de_pago ; //CREA FOMRA DE PAGO
+    crear_boton_edades ; // CREA BOTON
 };
 
 //BOTON CON EDADES
@@ -361,9 +367,11 @@ function enviar_datos_2 (e) {
 function enviar_datos_3(e) {
     e.preventDefault();
 
-    precio_total (); // DEVUELVE VALOR FINAL
+   // precio_total (); // DEVUELVE VALOR FINAL
 };
 
+//EVENTO BOTON BIENVENIDA
+boton_bienvenida.addEventListener ( 'click', guradar_storage);
 
 //EVENTO DEL BOTON QUE TOMA DESTINO Y PASAJEROS
 boton_primer_paso.addEventListener("click", enviar_datos_1);

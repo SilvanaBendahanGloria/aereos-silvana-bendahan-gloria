@@ -173,6 +173,8 @@ function tipo_de_viaje () {
     document.getElementById("id_opciones_ida").appendChild(opciones_de_viaje_2);
 };
 
+
+
 let tramos = tipo_de_viaje ();
 
 if (tramos == 1) { //value ??  selectedItem? options?

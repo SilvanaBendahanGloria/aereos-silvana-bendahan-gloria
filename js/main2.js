@@ -4,15 +4,11 @@ let tarifa_consumidor;
 let impuesto_dolares = 1.65;
 let lista_pasajeros = [];
 let nombre_pasajero = document.getElementById("nombre_pasajero"); 
-let lugar = document.getElementById("lugar_opcion");
-let num_pasajeros_2 = document.getElementById("num_pasajeros_2").value;
-let num_pasajeros_11 = document.getElementById("num_pasajeros_11").value;
-let num_pasajeros_64 = document.getElementById("num_pasajeros_64").value;
-let num_pasajeros_65 = document.getElementById("num_pasajeros_65").value;
-let agregar_texto_edades = document.getElementById ("texto_edades");
-let agregar_completar_edades = document.getElementById ("completar_edades");
+
 let agregar_texto_ida = document.getElementById("texto_ida");
 let agregar_opciones_ida = document.getElementById("opciones_ida");
+
+
 let agregar_texto_pago = document.getElementById("texto_pago");
 let agregar_opciones_pago = document.getElementById ("opciones_pago");
 let agregar_en_cuotas = document.getElementById("en_cuotas");
@@ -43,36 +39,75 @@ let lugar3 = new Destino ("TOKIO", 2200, 18362);
 let lugar4 = new Destino ("ESTAMBUL", 1800, 12237);
 
 let destinos = [lugar1, lugar2, lugar3, lugar4]; 
-let tu_destino;
+
 
 function tomar_lugar () {
-    lugar.addEventListener("change", (e) => {
-        e.preventDefault ();
+    let tu_destino= document.getElementById("lugar_opcion").value;
 
-        tu_destino = e.target.value;
-        console.log(tu_destino);
-            
-        for (let destino of destinos) {
-            if (tu_destino === destino.nombre)  {
-                return destino.impuestos();
-            }
+    console.log(tu_destino)
+
+    for (let destino of destinos){
+
+        if (destino.nombre === tu_destino){
+
+            console.log(destino.impuestos());
+
+            return destino.impuestos();
         }
-    }) 
+    }
 };
 
 
+let tu_viaje = document.getElementById('tipo_de_viaje');
+let seleccion_viaje;
 
-let pasajero_inf = Number(num_pasajeros_2) * Number(tomar_lugar * 0.1);
-let pasajero_chd = Number(num_pasajeros_11) * Number(tomar_lugar * 0.5);
-let pasajero_adt = Number(num_pasajeros_64) * Number(tomar_lugar);
-let pasajero_snr = Number(num_pasajeros_65) * Number(tomar_lugar * 0.8);
-
-
-function suma () {
-   let sumar = pasajero_inf + pasajero_chd + pasajero_adt + pasajero_snr;
-   return sumar;
+function tipo_de_viaje () {
+    
+    tu_viaje.addEventListener("change", (e) => {
+        e.preventDefault();
+        seleccion_viaje = e.target.value;
+        
+    });
+    //return seleccion_viaje;
+    console.log(seleccion_viaje);
 }
 
 
+
+let num_pasajeros_2;
+let num_pasajeros_11;
+let num_pasajeros_64;
+let num_pasajeros_65;
+
+
+function tomar_edades(){
+    num_pasajeros_2 = document.getElementById("num_pasajeros_2").value;
+    num_pasajeros_11 = document.getElementById("num_pasajeros_11").value;
+    num_pasajeros_64 = document.getElementById("num_pasajeros_64").value;
+    num_pasajeros_65 = document.getElementById("num_pasajeros_65").value;
+
+    //return Number(num_pasajeros_2), Number(num_pasajeros_11), Number(num_pasajeros_64), Number(num_pasajeros_65);
+    console.log (Number(num_pasajeros_2), Number(num_pasajeros_11), Number(num_pasajeros_64), Number(num_pasajeros_65)) 
+}
+
+
+
 boton_primer_paso.addEventListener("click", tomar_lugar);
-boton_primer_paso.addEventListener("click", suma);
+boton_primer_paso.addEventListener("click", tomar_edades);
+boton_primer_paso.addEventListener("click", tipo_de_viaje);
+
+
+
+/*
+pasajero_inf = num_pasajeros_2 * tomar_lugar() * 0.1;
+pasajero_chd = num_pasajeros_11 * tomar_lugar() * 0.5;
+pasajero_adt = num_pasajeros_64 * tomar_lugar();
+pasajero_snr = num_pasajeros_65 * tomar_lugar() * 0.8;
+
+let sumar;
+
+function suma () {
+   sumar = pasajero_inf + pasajero_chd + pasajero_adt + pasajero_snr;
+   return sumar;
+}
+*/

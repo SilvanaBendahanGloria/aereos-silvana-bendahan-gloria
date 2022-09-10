@@ -5,6 +5,7 @@ let impuesto_dolares = 1.65;
 let lista_pasajeros = [];
 let nombre_pasajero = document.getElementById("nombre_pasajero"); 
 let lugar = document.getElementById("lugar_opcion");
+let num_pasajeros = document.getElementById("num_pasajeros");
 let agregar_texto_edades = document.getElementById ("texto_edades");
 let agregar_completar_edades = document.getElementById ("completar_edades");
 let agregar_texto_ida = document.getElementById("texto_ida");
@@ -51,17 +52,17 @@ class Pasajeros {
 //let ingreso = (prompt ("¿A que ciudad vas a viajar?")).toUpperCase ();
 function tomar_lugar () {
     //SELECCIONAR LUGAR
+    let tu_destino;
+
     lugar.addEventListener ("change", (e) => {
         e.preventDefault ();
 
-        let tu_destino = e.target.value;
-        //return tu_destino;
-        console.log (tu_destino)
-    })   
+        tu_destino = e.target.value;
+    })  
+        return tu_destino; 
 };
 
 let ingreso = tomar_lugar();
-console.log(ingreso);
 
 function tarifa_impuestos (lugar){
     //Destinos: tarifa_con_impuestos
@@ -72,13 +73,14 @@ function tarifa_impuestos (lugar){
 }
 
 let tarifa_con_impuestos = tarifa_impuestos (ingreso);
-console.log (tarifa_con_impuestos);
+
 
 //cant_pasajeros = parseInt (prompt ("¿Cuántos pasajeros van a viajar?"));
 function tomar_cantidad () {
     //TOMAR DATO DE CANTIDAD DE PASAJEROS
-    let num_pasajeros = parseInt(document.getElementById("num_pasajeros").value);
-    return num_pasajeros;
+    let num_pasajeros_valor = num_pasajeros.value;
+    console.log (num_pasajeros_valor);
+    return num_pasajeros_valor;
 };
 
 let cant_pasajeros = tomar_cantidad ();    
@@ -134,6 +136,11 @@ function sumar_tarifa_grupal (acu, precio) {
 
 //Reducir el array a un valor solo
 let suma = tarifa_grupal.reduce((a,b,c,d) => sumar_tarifa_grupal (a,b), 0 ) ;
+
+
+
+
+
 
 //tramos = prompt ("¿Es un viaje de IDA? Ingrese 1 ¿o es un viaje de IDA y VUELTA? Ingrese 2");
 function tipo_de_viaje () {
@@ -343,10 +350,7 @@ function crear_boton_pago() {
 
 //BOTON QUE EXISTE : PRIMER PASO
 function enviar_datos_1(e) {
-    e.preventDefault();
-
-    tomar_lugar ; //TOMA VALOR DESTINO
-    tomar_cantidad ; // TOMA VALOR CANTIDAD PASAJEROS
+    
     crear_inputs_edades ; // CREA INPUT EDADES
     tipo_de_viaje ; //CREA IDA O VUELTA
     forma_de_pago ; //CREA FOMRA DE PAGO

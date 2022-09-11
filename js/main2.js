@@ -5,15 +5,9 @@ let impuesto_dolares = 1.65;
 let lista_pasajeros = [];
 let nombre_pasajero = document.getElementById("nombre_pasajero"); 
 
+//NOMBRE PASAJERO
+localStorage.setItem("nombre_pasajero", "usuario");
 
-let agregar_en_cuotas = document.getElementById("en_cuotas");
-let agregar_cantidad_cuotas = document.getElementById("cantidad_cuotas");
-let agregar_check_uno = document.getElementById("check_uno");
-let agregar_check_dos = document.createElement("check_dos");
-let agregar_total_texto = document.getElementById("total_texto");
-let boton_primer_paso = document.getElementById("primer_paso");
-let agregar_boton_edades = document.getElementById("boton_edades");
-let agregar_boton_forma_pago = document.getElementById("boton_forma_pago");
 
 //CIUDADES
 class Destino {
@@ -120,6 +114,8 @@ function forma_de_pago () {
     };    
 }
 
+
+//TIPO CONSUMIDOR
 let tipo_consumidor;
 let texto_consumidor;
 
@@ -130,14 +126,35 @@ function tipo_de_consumidor () {
 }
 
 
+//BOTON FINAL
 let boton_de_pago;
 let texto_boton_pago;
 
 function boton_pago () {
     boton_de_pago = document.getElementById("boton_pago");
-    texto_boton_pago += '<button type="button" class="btn btn-dark center">Calculá tu viaje</button>';
+    texto_boton_pago += '<button id="boton_final" type="button" class="btn btn-dark center">Calculá tu viaje</button>';
     boton_de_pago.innerHTML = texto_boton_pago; 
+    
+    let parentDiv = boton_final.parentNode;
+    parentDiv.insertBefore(button, boton_final);
 }
+
+
+//DEVOLUCION PRESUPUESTO
+let texto_final;
+let texto_presupuesto;
+
+function calcular_presupuesto(){
+    texto_final = document.getElementById("total_texto");
+    texto_presupuesto += '<h2><span>Tu nombre:</span>el total de tu viaje es de USD: </h2> +<span>aca va el total</span>';
+    texto_final.innerHTML = texto_presupuesto;
+    
+}
+
+
+//EVENTOS
+let boton_primer_paso = document.getElementById("primer_paso");
+let boton_final = document.getElementById("boton_final");
 
 
 boton_primer_paso.addEventListener("click", tomar_lugar);
@@ -146,6 +163,9 @@ boton_primer_paso.addEventListener("click", tomar_edades);
 boton_primer_paso.addEventListener("click", forma_de_pago);
 boton_primer_paso.addEventListener("click", tipo_de_consumidor);
 boton_primer_paso.addEventListener("click", boton_pago);
+
+
+boton_final.addEventListener("click", calcular_presupuesto);
 
 
 

@@ -58,15 +58,15 @@ main h2 {
   padding: 5vh 0 5vh 0;
 }
 
-.boton {
+#boton_reset {
   position: sticky;
   bottom: 0;
 }
-.boton a {
+#boton_reset a {
   text-decoration: none;
   color: black;
 }
-.boton a:hover {
+#boton_reset a:hover {
   font-size: larger;
   color: black;
 }

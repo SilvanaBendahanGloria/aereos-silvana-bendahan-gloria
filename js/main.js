@@ -33,9 +33,8 @@ function guardar_sesion (e) {
         window.location.href = "#main";
         
     } else alert ("Completá tus datos");
-    
-   
 }
+
 
 
 function borrar_storage () {
@@ -187,14 +186,20 @@ let texto_final;
 let texto_presupuesto;
 
 
-let pasajero_recuperado = document.getElementById ("pasajero");
-let residencia_recuperado = document.getElementById ("residencia");    
-pasajero_recuperado.innerHTML = localStorage.getItem (arreglo_pasajeros.nombre);  //Cannot set properties of null (setting 'innerHTML')
-residencia_recuperado.innerHTML = localStorage.getItem ("arreglo_pasajeros".residencia);
+let pasajero_recuperado_js = document.getElementById ("pasajero_js");
+//pasajero_recuperado_js.innerHTML = localStorage.getItem (recuperando_arreglo.nombre);  
+
+let residencia_recuperado_js = document.getElementById ("residencia_js"); 
+//residencia_recuperado_js.innerHTML = localStorage.getItem (arreglo_pasajeros.find(tu_residencia => tu_residencia == residencia));
+
+let destino_recuperado_js = document.getElementById ("destino_js");
+let que_destino_elegiste = document.getElementById ("lugar_opcion").value;
+//destino_recuperado_js.innerHTML = que_destino_elegiste;
+
 
 function calcular_presupuesto(){
     texto_final = document.getElementById("total_texto");
-    texto_presupuesto += '<h2> <span id="pasajero"></span>: El total de tu viaje desde <span id="residencia"></span> a <span> tu_destino.value?? </span> es de USD: <span> aca va el total </span></h2>';
+    texto_presupuesto += '<h2> <span id="pasajero_js"></span>: El total de tu viaje desde <span id="residencia_js"></span> a <span id="tu_destino_js">  </span> es de USD: <span> aca va el total </span></h2>';
     texto_final.innerHTML = texto_presupuesto;
 }
 

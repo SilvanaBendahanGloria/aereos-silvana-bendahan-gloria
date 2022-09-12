@@ -25,7 +25,7 @@
     <title>Cotizador de Aéreos</title>
 </head>
 <body>
-    <header class="bg-dark" id="inicio">
+    <header  id="inicio">
         <div>  
             <input id="nombre_pasajero" class="form-control form-control-sm" type="text" placeholder="Ingresá tu nombre">
             <input id="residencia_pasajero" class="form-control form-control-sm" type="text" placeholder="Ingresá donde vivís">
@@ -35,7 +35,7 @@
     </header>
 
     <main id="main">
-        <h1>Cotizá tu pasaje aéreo en pocos pasos:</h1>
+        <h1 >Cotizá tu pasaje aéreo en pocos pasos:</h1>
         <section>
 
             <div class="row">
@@ -75,19 +75,19 @@
                     <h2>3) Ingresa cuantos pasajeros viajan:</h2>
                 </div>
                 <div class="col">
-                    <p>Menores de 2 años</p>
+                    <label>Menores de 2 años</label>
                     <input id="num_pasajeros_2"  type="number" placeholder="INF"> 
                 </div>
                 <div class="col">
-                    <p>Desde 2 años a 11 años</p>
+                    <label>Desde 2 años a 11 años</label>
                     <input id="num_pasajeros_11"  type="number" placeholder="CHD"> 
                 </div>
                 <div class="col">
-                    <p>De 12 a 64 años</p>
+                    <label>De 12 a 64 años</label>
                     <input id="num_pasajeros_64"  type="number" placeholder="ADT"> 
                 </div>
                 <div class="col">
-                    <p>65 años o más</p>
+                    <label>65 años o más</label>
                     <input id="num_pasajeros_65"  type="number" placeholder="SNR"> 
                 </div>
             </div>
@@ -110,7 +110,7 @@
             </div>
 
             <div class="d-flex justify-content-center">
-                <button id="boton_primer_paso" type="button" class="btn btn-dark center">Siguiente</button>
+                <button id="boton_primer_paso" type="button" class="btn btn-light center">Siguiente</button>
             </div>
 
             <div class="row">
@@ -149,14 +149,16 @@
 
                 </div> 
             </div>
-        </section>       
+        </section>     
+        
+        <div class="d-flex justify-content-end ">
+            <button id="boton_reset" type="button" class="btn btn-danger"><a href="#inicio">Empezar de nuevo</a></button>
+        </div>
     </main>
 
-    <div class="d-flex justify-content-end ">
-        <button id="boton_reset" type="button" class="btn btn-danger"><a href="#inicio">Empezar de nuevo</a></button>
-    </div>
+    
 
-    <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+    <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50">
         <div class="container-fluid">
             <h3>Desarrolladora Web: Silvana Bendahan Gloria. Mirá mis trabajos en <a href="https://github.com/SilvanaBendahanGloria" target="_blank">Github</a></h3>
         </div>

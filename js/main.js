@@ -29,6 +29,9 @@ function guardar_sesion (e) {
 
         let recuperando_arreglo = localStorage.getItem("arreglo_pasajeros");
         console.log(recuperando_arreglo);
+
+        window.location.href = "#main";
+        
     } else alert ("Completá tus datos");
     
    
@@ -37,6 +40,8 @@ function guardar_sesion (e) {
 
 function borrar_storage () {
     localStorage.clear(); // no borra el .value de los inputs ??
+    
+    window.location.href = "#inicio";
 }
 
 
@@ -122,10 +127,10 @@ function forma_de_pago (e) {
         let titulo_cuotas;
         titulo_cuotas += '<h3> ¿En cuantas cuotas vas a pagar? </h3>';
         texto_cuotas.innerHTML = titulo_cuotas;
-/*
+
         cantidad_cuotas = document.getElementById("cantidad_cuotas");
         
-        let agregar_cuotas = () => {
+   /*     let agregar_cuotas = () => {
             let num_cuotas = document.createElement('select');
             num_cuotas.id = "cantidad_cuotas";
             
@@ -170,7 +175,7 @@ function boton_pago (e) {
     e. preventDefault();
 
     boton_de_pago = document.getElementById("boton_final");
-    texto_boton_pago += '<button id="boton_pagar" type="button" onclick="calcular_presupuesto()" class="btn btn-dark center">Calculá tu viaje</button>';
+    texto_boton_pago += '<button id="boton_pagar" type="button" onclick="calcular_presupuesto()" class="btn btn-light center">Calculá tu viaje</button>';
     boton_de_pago.innerHTML = texto_boton_pago; 
 }
 
@@ -179,11 +184,11 @@ function boton_pago (e) {
 let texto_final;
 let texto_presupuesto;
 
-
+/*
 let pasajero_recuperado = document.getElementById ("pasajero");
 let residencia_recuperado = document.getElementById ("residencia");    
 pasajero_recuperado.innerHTML = localStorage.getItem ("arreglo_pasajeros".nombre);  //Cannot set properties of null (setting 'innerHTML')
-residencia_recuperado.innerHTML = localStorage.getItem ("arreglo_pasajeros".residencia);
+residencia_recuperado.innerHTML = localStorage.getItem ("arreglo_pasajeros".residencia);*/
 
 function calcular_presupuesto(){
     texto_final = document.getElementById("total_texto");

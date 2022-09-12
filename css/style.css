@@ -14,6 +14,7 @@ header {
   background-image: url(/images/window.jpg);
   background-repeat: no-repeat;
   object-fit: cover;
+  background-color: #22252c;
 }
 header div {
   width: 65vw;
@@ -32,22 +33,23 @@ header div a:hover {
 }
 
 #boton_bienvenida {
-  background-color: rgba(38, 38, 38, 0.1490196078);
+  background-color: #22252c;
   border: none;
 }
 
 @media screen and (max-width: 450px) {
   header {
     background-image: none;
-    background-color: #000000;
+    background-color: #22252c;
   }
   header div a {
     font-size: 2em;
   }
 }
 main {
-  background: linear-gradient(to right, #1b7e4c, #b9f0d2);
+  background: linear-gradient(to bottom, #22252c, #4b4a4a);
   padding: 0 2vw 0 2vw;
+  color: white;
 }
 main h2 {
   line-height: 2em;
@@ -71,6 +73,9 @@ main h2 {
   color: black;
 }
 
+footer {
+  background-color: #22252c;
+}
 footer h3, footer p {
   font-size: 0.8em;
 }

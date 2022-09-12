@@ -4,6 +4,7 @@ header {
     background-image: url(/images/window.jpg);
     background-repeat: no-repeat;
     object-fit: cover;  
+    background-color: #22252c;
 
     div {
         width: 65vw;
@@ -25,14 +26,14 @@ header {
 }
 
 #boton_bienvenida {
-    background-color: #26262626 ;
+    background-color: #22252c ;
     border: none;
 }
     
 @media screen and (max-width:450px) {
     header {
         background-image: none;
-        background-color: #000000;
+        background-color: #22252c;
 
         div a {
            font-size: 2em; 

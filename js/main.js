@@ -129,42 +129,44 @@ function forma_de_pago (e) {
         texto_cuotas.innerHTML = titulo_cuotas;
 
         cantidad_cuotas = document.getElementById("cantidad_cuotas");
-        
-   /*     let agregar_cuotas = () => {
-            let num_cuotas = document.createElement('select');
-            num_cuotas.id = "cantidad_cuotas";
-            
-            let tres_cuotas = document.createElement('option');
-            tres_cuotas.value = "1";
-            tres_cuotas.text = "3 cuotas";
-            let seis_cuotas = document.createElement('option');
-            seis_cuotas.value = "2";
-            seis_cuotas.text = "6 cuotas";
-            let doce_cuotas = document.createElement('option');
-            doce_cuotas.value = "3";
-            doce_cuotas.text = "12 cuotas";
-            
-            num_cuotas.appendChild(tres_cuotas);
-            num_cuotas.appendChild(seis_cuotas);
-            num_cuotas.appendChild(doce_cuotas);
-            
-            let cantidad_cuotas.appendChild("agregar_cuotas"); 
-        } */
+        let num_cuotas;
+        num_cuotas += '<select id="cantidad_cuotas_js"> <option value="">Seleccioná la cantidad de cuotas</option> <option value="3">3 cuotas</option> <option value="6">6 cuotas</option> <option value="12">12 cuotas</option></select>';
+        cantidad_cuotas.innerHTML = num_cuotas;     
     };    
 }
 
+function cuotas_js () {
+    let cantidad_cuotas_js = document.getElementById('cantidad_cuotas_js').value;
+    
+    console.log(cantidad_cuotas_js);
+    //return cantidad_cuotas_js;
+}
 
 //TIPO CONSUMIDOR
-let tipo_consumidor;
 let texto_consumidor;
+let tipo_consumidor;
 
 function tipo_de_consumidor (e) {
     e. preventDefault();
 
-    tipo_consumidor = document.getElementById("texto_consumidor");
-    texto_consumidor += '<h2> 5) ¿Que tipo de factura necesitas? </h2>';
-    tipo_consumidor.innerHTML = texto_consumidor;
-} //falta el select y option igual que arriba
+    texto_consumidor = document.getElementById("texto_consumidor");
+    let titulo_consumidor;
+    titulo_consumidor += '<h2> 5) ¿Que tipo de factura necesitas? </h2>';
+    texto_consumidor.innerHTML = titulo_consumidor;
+
+
+    tipo_consumidor = document.getElementById("tipo_consumidor");
+    let forma_consumidor;
+    forma_consumidor += '<select id="tipo_consumidor_js"> <option value="">Seleccioná que tipo de consumidor sos</option> <option value="1">Consumidor final</option> <option value="2">Necesito IVA discriminado</option></select>';
+    tipo_consumidor.innerHTML = forma_consumidor;  
+} 
+
+function consumidor_js () {
+    let forma_consumidor_js = document.getElementById('tipo_consumidor_js').value;
+    
+    console.log(forma_consumidor_js);
+    //return forma_consumidor_js;
+}
 
 
 //BOTON FINAL
@@ -175,7 +177,7 @@ function boton_pago (e) {
     e. preventDefault();
 
     boton_de_pago = document.getElementById("boton_final");
-    texto_boton_pago += '<button id="boton_pagar" type="button" onclick="calcular_presupuesto()" class="btn btn-light center">Calculá tu viaje</button>';
+    texto_boton_pago += '<button id="boton_pagar" type="button" onclick="calcular_presupuesto(); cuotas_js(); consumidor_js()" class="btn btn-light center">Calculá tu viaje</button>';
     boton_de_pago.innerHTML = texto_boton_pago; 
 }
 
@@ -184,11 +186,11 @@ function boton_pago (e) {
 let texto_final;
 let texto_presupuesto;
 
-/*
+
 let pasajero_recuperado = document.getElementById ("pasajero");
 let residencia_recuperado = document.getElementById ("residencia");    
-pasajero_recuperado.innerHTML = localStorage.getItem ("arreglo_pasajeros".nombre);  //Cannot set properties of null (setting 'innerHTML')
-residencia_recuperado.innerHTML = localStorage.getItem ("arreglo_pasajeros".residencia);*/
+pasajero_recuperado.innerHTML = localStorage.getItem (arreglo_pasajeros.nombre);  //Cannot set properties of null (setting 'innerHTML')
+residencia_recuperado.innerHTML = localStorage.getItem ("arreglo_pasajeros".residencia);
 
 function calcular_presupuesto(){
     texto_final = document.getElementById("total_texto");
@@ -207,5 +209,7 @@ boton_primer_paso.addEventListener("click", tomar_edades);
 boton_primer_paso.addEventListener("click", forma_de_pago);
 boton_primer_paso.addEventListener("click", tipo_de_consumidor);
 boton_primer_paso.addEventListener("click", boton_pago);
+
+//el boton de pago tiene funciones onclick en html generado en js
 
 boton_reset.addEventListener("click", borrar_storage);

@@ -22,10 +22,10 @@
     <!--Favicon-->  
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 
-    <title>Cotizador de Aéreos</title>
+    <title>Bienvenido al Cotizador de Aéreos</title>
 </head>
 <body>
-    <header  id="inicio">
+    <header  id="inicio" class="header_index">
         <div>  
             <input id="nombre_pasajero" class="form-control form-control-sm" type="text" placeholder="Ingresá tu nombre">
             <input id="residencia_pasajero" class="form-control form-control-sm" type="text" placeholder="Ingresá donde vivís">
@@ -33,130 +33,12 @@
             
         </div>
     </header>
-
-    <main id="main">
-        <h1 >Cotizá tu pasaje aéreo en pocos pasos:</h1>
-        <section>
-
-            <div class="row">
-                <div class="col">
-                    <h2>1) Elegí tu destino:</h2>
-                </div>
-                <div class="col">
-                    <form>
-                        <select id="lugar_opcion" class="form-select">
-                            <option value="">Seleccioná el destino.</option>
-                            <option value="PARIS">París</option>
-                            <option value="NUEVA YORK">Nueva York</option>
-                            <option value="TOKIO">Tokio</option>
-                            <option value="ESTAMBUL">Estambul</option>
-                        </select>
-                    </form>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col" >
-                    <h2>2) Elegí el tipo de viaje</h2>
-                </div>
-                <div class="col" >
-                    <form>
-                        <select id="tipo_de_viaje" class="form-select">
-                            <option value="">Seleccioná el tipo de viaje</option>
-                            <option value="IDA">Solo Ida</option>
-                            <option value="IDA Y VUELTA">Ida y Vuelta</option>
-                        </select>
-                    </form>
-                </div>
-            </div>
-           
-            <div class="row">
-                <div class="col">
-                    <h2>3) Ingresa cuantos pasajeros viajan:</h2>
-                </div>
-                <div class="col">
-                    <label>Menores de 2 años</label>
-                    <input id="num_pasajeros_2"  type="number" placeholder="INF"> 
-                </div>
-                <div class="col">
-                    <label>Desde 2 años a 11 años</label>
-                    <input id="num_pasajeros_11"  type="number" placeholder="CHD"> 
-                </div>
-                <div class="col">
-                    <label>De 12 a 64 años</label>
-                    <input id="num_pasajeros_64"  type="number" placeholder="ADT"> 
-                </div>
-                <div class="col">
-                    <label>65 años o más</label>
-                    <input id="num_pasajeros_65"  type="number" placeholder="SNR"> 
-                </div>
-            </div>
- 
-
-            <div class="row">
-                <div class="col">
-                    <h2>4) Selecciona la froma de pago</h2>
-                </div>           
-                <div class="col">
-                    <form>
-                        <select id="forma_de_pago" class="form-select">
-                            <option value="">Seleccioná la forma de pago</option>
-                            <option value="EFECTIVO">Efectivo / Tarjeta de Débito</option>
-                            <option value="QR">Código QR</option>
-                            <option value="TARJETA">Tarjeta de Crédito</option>
-                        </select>
-                    </form>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-center">
-                <button id="boton_primer_paso" type="button" class="btn btn-light center">Siguiente</button>
-            </div>
-
-            <div class="row">
-                <div class="col" id="texto_cuotas">
-                                
-
-                </div>
-                <div class="col" id="cantidad_cuotas">
-                                
-
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col" id="texto_consumidor">
-
-
-                </div> 
-                <div class="col" id="tipo_consumidor">
-                
-                </div>
-            </div>
-
-            
-            <div class="d-flex justify-content-center" id="boton_final">
-                
-
-            </div>
-        </section>
-
-        <section >
-            <div class="row" id="total">
-                <div class="col" id="total_texto">
-                   
-
-                </div> 
-            </div>
-        </section>     
-        
+    
+    <main>   
         <div class="d-flex justify-content-end ">
             <button id="boton_reset" type="button" class="btn btn-danger"><a href="#inicio">Empezar de nuevo</a></button>
         </div>
-    </main>
-
-    
+    </main>  
 
     <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50">
         <div class="container-fluid">

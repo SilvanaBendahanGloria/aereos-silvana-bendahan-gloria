@@ -26,14 +26,8 @@ function guardar_sesion (e) {
         let nuevo_pasajero = new Pasajero (nombre_pasajero.value, residencia_pasajero.value);
         arreglo_pasajeros.push (nuevo_pasajero);
 
-        let arreglo_json = JSON.stringify(arreglo_pasajeros);
-        localStorage.setItem("arreglo_pasajeros", arreglo_json);
-
-        recuperando_arreglo = localStorage.getItem("arreglo_pasajeros");
-
-        recuperando_arreglo = JSON.parse(recuperando_arreglo);
-
-        console.log(recuperando_arreglo);
+        localStorage.setItem("usuario", nombre_pasajero.value);
+        localStorage.setItem("residencia", residencia_pasajero.value);
 
         window.location.href = "#main";
         
@@ -137,7 +131,7 @@ function forma_de_pago (e) {
 
         cantidad_cuotas = document.getElementById("cantidad_cuotas");
         let num_cuotas;
-        num_cuotas += '<select id="cantidad_cuotas_js"> <option value="">Seleccioná la cantidad de cuotas</option> <option value="3">3 cuotas</option> <option value="6">6 cuotas</option> <option value="12">12 cuotas</option></select>';
+        num_cuotas += '<select id="cantidad_cuotas_js" class="form-select"> <option value="">Seleccioná la cantidad de cuotas</option> <option value="3">3 cuotas</option> <option value="6">6 cuotas</option> <option value="12">12 cuotas</option></select>';
         cantidad_cuotas.innerHTML = num_cuotas;     
     };    
 }
@@ -165,7 +159,7 @@ function tipo_de_consumidor (e) {
 
     tipo_consumidor = document.getElementById("tipo_consumidor");
     let forma_consumidor;
-    forma_consumidor += '<select id="tipo_consumidor_js"> <option value="">Seleccioná que tipo de consumidor sos</option> <option value="1">Consumidor final</option> <option value="2">Necesito IVA discriminado</option></select>';
+    forma_consumidor += '<select id="tipo_consumidor_js" class="form-select"> <option value="">Seleccioná que tipo de consumidor sos</option> <option value="1">Consumidor final</option> <option value="2">Necesito IVA discriminado</option></select>';
     tipo_consumidor.innerHTML = forma_consumidor;  
 } 
 
@@ -206,15 +200,14 @@ function calcular_presupuesto(){
     texto_final.innerHTML = texto_presupuesto;
    
     let pasajero_recuperado_js = document.getElementById ("pasajero_js");
-    let texto_pasajero_recuperado_js = (nombre_pasajero.value).toUpperCase();//reveer con local storage !!
-    pasajero_recuperado_js.innerHTML = texto_pasajero_recuperado_js;
+    let texto_pasajero = localStorage.getItem("usuario").toUpperCase();
+    pasajero_recuperado_js.innerHTML = texto_pasajero;
    
     let residencia_recuperado_js = document.getElementById ("residencia_js"); 
-    let texto_residencia_recuperado_js = (residencia_pasajero.value).toUpperCase();//reveer con local storage !!
+    let texto_residencia_recuperado_js = localStorage.getItem ("residencia").toUpperCase();
     residencia_recuperado_js.innerHTML = texto_residencia_recuperado_js;
 
     let destino_recuperado_js = document.getElementById ("tu_destino_js");
-   // let texto_destino_recuperado_js = ;
     destino_recuperado_js.innerHTML = tu_destino;
 
     let total_recuperado_js = document.getElementsById ("total_js");

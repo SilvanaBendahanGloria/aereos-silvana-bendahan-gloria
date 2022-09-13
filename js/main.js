@@ -17,6 +17,8 @@ class Pasajero {
     }
 }
 
+let recuperando_arreglo = [];
+
 function guardar_sesion (e) {
     e.preventDefault();
 
@@ -27,7 +29,7 @@ function guardar_sesion (e) {
         let arreglo_json = JSON.stringify(arreglo_pasajeros);
         localStorage.setItem("arreglo_pasajeros", arreglo_json);
 
-        let recuperando_arreglo = localStorage.getItem("arreglo_pasajeros");
+        recuperando_arreglo = JSON.parse(localStorage.getItem("arreglo_pasajeros"));
         console.log(recuperando_arreglo);
 
         window.location.href = "#main";
@@ -79,6 +81,7 @@ function tomar_lugar (e) {
     }
 };
 
+
 //IDA Y VUELTA
 let tu_viaje;
 
@@ -96,6 +99,7 @@ let num_pasajeros_2;
 let num_pasajeros_11;
 let num_pasajeros_64;
 let num_pasajeros_65;
+
 
 function tomar_edades(e){
     e. preventDefault();
@@ -141,6 +145,7 @@ function cuotas_js () {
     //return cantidad_cuotas_js;
 }
 
+
 //TIPO CONSUMIDOR
 let texto_consumidor;
 let tipo_consumidor;
@@ -184,23 +189,27 @@ function boton_pago (e) {
 //DEVOLUCION PRESUPUESTO
 let texto_final;
 let texto_presupuesto;
-
-
-let pasajero_recuperado_js = document.getElementById ("pasajero_js");
-//pasajero_recuperado_js.innerHTML = localStorage.getItem (recuperando_arreglo.nombre);  
-
-let residencia_recuperado_js = document.getElementById ("residencia_js"); 
-//residencia_recuperado_js.innerHTML = localStorage.getItem (arreglo_pasajeros.find(tu_residencia => tu_residencia == residencia));
-
-let destino_recuperado_js = document.getElementById ("destino_js");
-let que_destino_elegiste = document.getElementById ("lugar_opcion").value;
-//destino_recuperado_js.innerHTML = que_destino_elegiste;
+let pasajero_recuperado_js;
 
 
 function calcular_presupuesto(){
     texto_final = document.getElementById("total_texto");
-    texto_presupuesto += '<h2> <span id="pasajero_js"></span>: El total de tu viaje desde <span id="residencia_js"></span> a <span id="tu_destino_js">  </span> es de USD: <span> aca va el total </span></h2>';
+    texto_presupuesto += '<h2> <span id="pasajero_js"></span>: El total de tu viaje desde <span id="residencia_js">....</span> a <span id="tu_destino_js">....</span> es de USD: <span> .... </span></h2>';
     texto_final.innerHTML = texto_presupuesto;
+
+    function buscar_storage (el_nombre){        
+        let nombre_encontrado = recuperando_arreglo.find (name => name.nombre == el_nombre)
+        return nombre_encontrado;
+    }   
+   
+    pasajero_recuperado_js = document.getElementById ("pasajero_js");
+    let pasajero_recuperado_js_span = buscar_storage (Pasajero.nombre);
+    pasajero_recuperado_js.innerHTML = pasajero_recuperado_js_span;
+    console.log (pasajero_recuperado_js_span);  
+
+    let residencia_recuperado_js = document.getElementById ("residencia_js"); 
+
+    let destino_recuperado_js = document.getElementById ("destino_js");
 }
 
 

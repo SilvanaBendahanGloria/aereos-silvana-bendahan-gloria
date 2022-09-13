@@ -17,7 +17,7 @@ class Pasajero {
     }
 }
 
-let recuperando_arreglo = [];
+let recuperando_arreglo;
 
 function guardar_sesion (e) {
     e.preventDefault();
@@ -29,7 +29,10 @@ function guardar_sesion (e) {
         let arreglo_json = JSON.stringify(arreglo_pasajeros);
         localStorage.setItem("arreglo_pasajeros", arreglo_json);
 
-        recuperando_arreglo = JSON.parse(localStorage.getItem("arreglo_pasajeros"));
+        recuperando_arreglo = localStorage.getItem("arreglo_pasajeros");
+
+        recuperando_arreglo = JSON.parse(recuperando_arreglo);
+
         console.log(recuperando_arreglo);
 
         window.location.href = "#main";
@@ -66,11 +69,12 @@ let lugar4 = new Destino ("ESTAMBUL", 1800, 12237);
 
 let destinos = [lugar1, lugar2, lugar3, lugar4]; 
 
+let tu_destino;
 
 function tomar_lugar (e) {
     e. preventDefault();
 
-    let tu_destino= document.getElementById("lugar_opcion").value;
+    tu_destino = document.getElementById("lugar_opcion").value;
     console.log(tu_destino)
 
     for (let destino of destinos){
@@ -186,31 +190,37 @@ function boton_pago (e) {
 }
 
 
+function sumatoria(){
+    
+}
+
+
+
 //DEVOLUCION PRESUPUESTO
 let texto_final;
 let texto_presupuesto;
-let pasajero_recuperado_js;
-
 
 function calcular_presupuesto(){
     texto_final = document.getElementById("total_texto");
-    texto_presupuesto += '<h2> <span id="pasajero_js"></span>: El total de tu viaje desde <span id="residencia_js">....</span> a <span id="tu_destino_js">....</span> es de USD: <span> .... </span></h2>';
+    texto_presupuesto += '<h2> <span id="pasajero_js"></span>: El total de tu viaje desde <span id="residencia_js"></span> a <span id="tu_destino_js"></span> es de USD: <span id="total_js"> </span></h2>';
     texto_final.innerHTML = texto_presupuesto;
-
-    function buscar_storage (el_nombre){        
-        let nombre_encontrado = recuperando_arreglo.find (name => name.nombre == el_nombre)
-        return nombre_encontrado;
-    }   
    
-    pasajero_recuperado_js = document.getElementById ("pasajero_js");
-    let pasajero_recuperado_js_span = buscar_storage (Pasajero.nombre);
-    pasajero_recuperado_js.innerHTML = pasajero_recuperado_js_span;
-    console.log (pasajero_recuperado_js_span);  
-
+    let pasajero_recuperado_js = document.getElementById ("pasajero_js");
+    let texto_pasajero_recuperado_js = (nombre_pasajero.value).toUpperCase();//reveer con local storage !!
+    pasajero_recuperado_js.innerHTML = texto_pasajero_recuperado_js;
+   
     let residencia_recuperado_js = document.getElementById ("residencia_js"); 
+    let texto_residencia_recuperado_js = (residencia_pasajero.value).toUpperCase();//reveer con local storage !!
+    residencia_recuperado_js.innerHTML = texto_residencia_recuperado_js;
 
-    let destino_recuperado_js = document.getElementById ("destino_js");
-}
+    let destino_recuperado_js = document.getElementById ("tu_destino_js");
+   // let texto_destino_recuperado_js = ;
+    destino_recuperado_js.innerHTML = tu_destino;
+
+    let total_recuperado_js = document.getElementsById ("total_js");
+    let texto_total_recuperado_js = 0; //funcion sumatoria
+    total_recuperado_js.innerHTML = texto_total_recuperado_js;
+} 
 
 
 //EVENTOS

@@ -29,8 +29,18 @@ function guardar_sesion (e) {
 
         window.location.href = "presupuesto.html";
         
-    } else alert ("Completá tus datos");
+    } else Swal.fire({
+        icon: 'warning',
+        title: 'Oops!',
+        text: 'Completá tus datos por favor'}) ;
 }
+
+
+
+
+
+
+
 
 
 function borrar_storage () {

@@ -5,11 +5,27 @@ let boton_primer_paso = document.getElementById("boton_primer_paso");
 let boton_reset = document.getElementById("boton_reset");
 
 
-function borrar_storage () {
-    localStorage.clear(); // no borra el .value de los inputs ??
+function borrar_storage (e) {
+    e.preventDefault();
     
-    window.location.href = "index.html";
-}
+    Swal.fire({
+        imageUrl: 'https://unsplash.it/200',
+        imageAlt: 'imágen random',
+        title: '¿Estás seguro?',
+        text: "Se borrarán todas tus cotizaciones!",
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si!'
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            window.location.href = "index.html",
+            localStorage.clear(),
+            )}
+        },
+)};
 
 
 //CIUDADES
@@ -153,12 +169,6 @@ function boton_pago (e) {
 }
 
 
-function sumatoria(){
-    
-}
-
-
-
 //DEVOLUCION PRESUPUESTO
 let texto_final;
 let texto_presupuesto;
@@ -183,6 +193,15 @@ function calcular_presupuesto(){
     let texto_total_recuperado_js = 0; //funcion sumatoria
     total_recuperado_js.innerHTML = texto_total_recuperado_js;
 } 
+
+
+function sumatoria(){
+    
+}
+
+
+
+
 
 
 //Eventos

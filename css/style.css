@@ -8,19 +8,44 @@ html {
   overflow-x: hidden;
 }
 
-.header_index {
-  height: 100vh;
+#boton_reset {
+  position: fixed;
+  bottom: 0;
+  margin-right: 3vw;
+}
+#boton_reset a {
+  text-decoration: none;
+  color: black;
+}
+#boton_reset a:hover {
+  font-size: larger;
+  color: black;
+}
+
+header {
+  background-color: #22252c;
+}
+header h1 {
+  margin: 0;
+  color: purple;
+  font-size: 3em;
+  font-style: italic;
+  line-height: 2.5em;
+}
+
+.main_index {
   width: 100vw;
+  height: 100vh;
   background-image: url(/images/window.jpg);
   background-repeat: no-repeat;
   object-fit: cover;
   background-color: #22252c;
 }
-.header_index div {
+.main_index .imagen {
   width: 65vw;
   padding: 40vh 0 0 30vw;
 }
-.header_index div a {
+.main_index .imagen a {
   text-decoration: none;
   color: #ffffff;
   font-size: 3em;
@@ -28,8 +53,8 @@ html {
   font-family: Georgia, "Times New Roman", Times, serif;
   text-align: center;
 }
-.header_index div a:hover {
-  color: #ac9de2;
+.main_index .imagen a:hover {
+  color: purple;
 }
 
 #boton_bienvenida {
@@ -46,31 +71,23 @@ html {
     font-size: 2em;
   }
 }
-main {
+#main_presupuesto {
+  width: 100vw;
   background: linear-gradient(to bottom, #22252c, #4b4a4a);
   padding: 0 2vw 0 2vw;
   color: white;
 }
-main h2 {
+#main_presupuesto h2 {
   line-height: 2em;
+  font-size: 2.5em;
+}
+#main_presupuesto h3 {
+  line-height: 1.5em;
+  font-size: 2em;
+}
+#main_presupuesto h4 {
+  line-height: 1em;
   font-size: 1.5em;
-}
-
-.total {
-  padding: 5vh 0 5vh 0;
-}
-
-#boton_reset {
-  position: sticky;
-  bottom: 0;
-}
-#boton_reset a {
-  text-decoration: none;
-  color: black;
-}
-#boton_reset a:hover {
-  font-size: larger;
-  color: black;
 }
 
 footer {

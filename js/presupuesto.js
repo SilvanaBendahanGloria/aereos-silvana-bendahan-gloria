@@ -95,7 +95,7 @@ function forma_de_pago (e) {
     if (tu_pago === "TARJETA") {
         texto_cuotas = document.getElementById("texto_cuotas");
         let titulo_cuotas;
-        titulo_cuotas += '<h3> ¿En cuantas cuotas vas a pagar? </h3>';
+        titulo_cuotas += '<h4> ¿En cuantas cuotas vas a pagar? </h4>';
         texto_cuotas.innerHTML = titulo_cuotas;
 
         cantidad_cuotas = document.getElementById("cantidad_cuotas");
@@ -122,7 +122,7 @@ function tipo_de_consumidor (e) {
 
     texto_consumidor = document.getElementById("texto_consumidor");
     let titulo_consumidor;
-    titulo_consumidor += '<h2> 5) ¿Que tipo de factura necesitas? </h2>';
+    titulo_consumidor += '<h3> 5) ¿Que tipo de factura necesitas? </h3>';
     texto_consumidor.innerHTML = titulo_consumidor;
 
 

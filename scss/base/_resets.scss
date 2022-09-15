@@ -7,3 +7,20 @@
 html {
   overflow-x: hidden;
 }
+
+
+#boton_reset {
+  position: fixed;
+  bottom: 0;
+  margin-right: 3vw;
+
+  a {
+      text-decoration: none;
+      color: black;
+
+      &:hover {
+          font-size: larger;
+          color: black;
+      }
+  }
+}

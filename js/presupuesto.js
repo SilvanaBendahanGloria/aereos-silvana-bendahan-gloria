@@ -53,7 +53,7 @@ let lugar8 = new Destino ("DOHA", 2500, 13306);
 let lugar9 = new Destino ("REIKIAVIK", 1750, 11429);
 let lugar10 = new Destino ("BONAIRE", 1400, 5305);
 
-let destinos = [lugar1, lugar2, lugar3, lugar4]; 
+let destinos = [lugar1, lugar2, lugar3, lugar4, lugar5, lugar6, lugar7, lugar8, lugar9, lugar10]; 
 
 let tu_destino;
 

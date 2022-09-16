@@ -26,7 +26,6 @@ function borrar_storage (e) {
             )}
         },
 )};
-
 //Para este Alert que necesita interrumpir el flujo y requiere una respuesta por parte del usuario es mejor elección Sweet Alert
 
 
@@ -47,6 +46,12 @@ let lugar1 = new Destino ("PARIS", 1000, 11043);
 let lugar2 = new Destino ("NUEVA YORK", 800, 8521);
 let lugar3 = new Destino ("TOKIO", 2200, 18362);
 let lugar4 = new Destino ("ESTAMBUL", 1800, 12237);
+let lugar5 = new Destino ("LOS ANGELES", 1500, 9846);
+let lugar6 = new Destino ("LIMA", 850, 3134);
+let lugar7 = new Destino ("SYDNEY", 1900, 11794);
+let lugar8 = new Destino ("DOHA", 2500, 13306);
+let lugar9 = new Destino ("REIKIAVIK", 1750, 11429);
+let lugar10 = new Destino ("BONAIRE", 1400, 5305);
 
 let destinos = [lugar1, lugar2, lugar3, lugar4]; 
 
@@ -170,8 +175,6 @@ function boton_pago (e) {
 }
 
 
-
-
 //DEVOLUCION PRESUPUESTO
 let texto_final;
 let texto_presupuesto;
@@ -237,18 +240,19 @@ boton_primer_paso.addEventListener("click", () => {
 //el id del html
 $('#boton_final').on('click', (function(){
 
-Toastify({
-    text: "Consultá el clima en tu destino",
-    duration: 5000,
-    destination: "https://www.meteored.com.ar/",
-    newWindow: true,
-    gravity: "top",
-    position: "right",
-    
-    style: {
-        fontSize: "1em",
-        background: "violet",
-    }
-}) .showToast (); }));
+    Toastify({
+        text: "Consultá el clima en tu destino",
+        duration: 5000,
+        destination: "https://www.meteored.com.ar/",
+        newWindow: true,
+        gravity: "top",
+        position: "right",
+        
+        style: {
+            fontSize: "1em",
+            background: "violet",
+        }
+    }) .showToast (); 
+}));
 //JQuery para capturar un botón generado dinámicamente :)
 

@@ -25,8 +25,8 @@ function borrar_storage (e) {
             localStorage.clear(),
             )}
         },
-)};
-//Para este Alert que necesita interrumpir el flujo y requiere una respuesta por parte del usuario es mejor elección Sweet Alert
+)}; //Para este Alert que necesita interrumpir el flujo y requiere una respuesta por parte del usuario es mejor elección Sweet Alert
+
 
 
 //CIUDADES
@@ -56,17 +56,19 @@ let lugar10 = new Destino ("BONAIRE", 1400, 5305);
 let destinos = [lugar1, lugar2, lugar3, lugar4, lugar5, lugar6, lugar7, lugar8, lugar9, lugar10]; 
 
 let tu_destino;
+let precio1;
 
 function tomar_lugar (e) {
-    e. preventDefault();
+    //e. preventDefault();
 
     tu_destino = document.getElementById("lugar_opcion").value;
     console.log(tu_destino)
 
     for (let destino of destinos){
         if (destino.nombre === tu_destino){
-            console.log(destino.impuestos());
-            //return destino.impuestos();
+            //console.log(destino.impuestos());
+            precio1 = destino.impuestos();
+            return precio1;
         }
     }
 };
@@ -74,13 +76,26 @@ function tomar_lugar (e) {
 
 //IDA Y VUELTA
 let tu_viaje;
+let precio2;
 
 function tipo_de_viaje (e) {
     e. preventDefault();
 
     tu_viaje = document.getElementById("tipo_de_viaje").value;
     //return tu_viaje
-    console.log (tu_viaje);
+    //console.log (tu_viaje);
+
+    if (tu_viaje === "IDA") {
+
+        precio2 = precio1 * 0.75;
+        return precio2;
+        //console.log (precio2);
+    }; 
+    {
+        precio2 = precio1; 
+        return precio2;
+        //console.log (precio2);
+    }
 }
 
 
@@ -90,6 +105,7 @@ let num_pasajeros_11;
 let num_pasajeros_64;
 let num_pasajeros_65;
 
+let precio3;
 
 function tomar_edades(e){
     e. preventDefault();
@@ -100,7 +116,16 @@ function tomar_edades(e){
     num_pasajeros_65 = document.getElementById("num_pasajeros_65").value;
 
     //return Number(num_pasajeros_2), Number(num_pasajeros_11), Number(num_pasajeros_64), Number(num_pasajeros_65);
-    console.log (Number(num_pasajeros_2), Number(num_pasajeros_11), Number(num_pasajeros_64), Number(num_pasajeros_65)) 
+    //console.log (Number(num_pasajeros_2), Number(num_pasajeros_11), Number(num_pasajeros_64), Number(num_pasajeros_65)) 
+    let precio3_inf = Number(num_pasajeros_2) * precio2 * 0.10;
+    let precio3_chd = Number(num_pasajeros_11) * precio2 * 0.5;
+    let precio3_adt = Number(num_pasajeros_64) * precio2;
+    let precio3_snr = Number(num_pasajeros_65) * precio2 * 0.8;
+
+    precio3 = precio3_inf + precio3_chd + precio3_adt + precio3_snr;
+
+    return precio3;
+    //console.log(precio3);   
 }
 
 
@@ -109,13 +134,26 @@ let tu_pago;
 let texto_cuotas;
 let cantidad_cuotas;
 
+let precio4;
+
 function forma_de_pago (e) {
     e. preventDefault();
 
     tu_pago = document.getElementById("forma_de_pago").value;
-    console.log (tu_pago);
+    //console.log (tu_pago);
+    if (tu_pago === "EFECTIVO") {
 
-    if (tu_pago === "TARJETA") {
+        precio4 = precio3;
+        return precio4;
+        //console.log (precio4);
+
+    } else if (tu_pago === "QR") {
+
+        precio4 = precio3 * 1.20;
+        return precio4;
+        //console.log (precio4);
+
+    } else {
         texto_cuotas = document.getElementById("texto_cuotas");
         let titulo_cuotas;
         titulo_cuotas += '<h4> ¿En cuantas cuotas vas a pagar? </h4>';
@@ -124,16 +162,53 @@ function forma_de_pago (e) {
         cantidad_cuotas = document.getElementById("cantidad_cuotas");
         let num_cuotas;
         num_cuotas += '<select id="cantidad_cuotas_js" class="form-select"> <option value="">Seleccioná la cantidad de cuotas</option> <option value="3">3 cuotas</option> <option value="6">6 cuotas</option> <option value="12">12 cuotas</option></select>';
-        cantidad_cuotas.innerHTML = num_cuotas;     
-    };    
-}
+        cantidad_cuotas.innerHTML = num_cuotas;  
+        
 
+        $('#cantidad_cuotas').on('change', function () {    
+            if (value = "3") {
+                precio4 = precio3 * 2;
+                return precio4;
+                //console.log (precio4);
+
+            } else if (value = "6") {vvvvvv//en 6 no devuelve valor
+ 
+                precio4 = precio3 * 2.5;
+                return precio4;
+                //console.log (precio4);
+
+            } else {
+
+                precio4 = precio3 * 3;
+                return precio4;
+                //console.log (precio4);
+
+            } 
+        })
+    }
+};
+
+/*
 function cuotas_js () {
     let cantidad_cuotas_js = document.getElementById('cantidad_cuotas_js').value;
-    
-    console.log(cantidad_cuotas_js);
+  
+    //console.log(cantidad_cuotas_js);
     //return cantidad_cuotas_js;
-}
+
+    if (cantidad_cuotas_js = "3") {
+        precio4 = precio3 * 2;
+        //return precio4;
+        console.log (precio4);
+    } else if (cantidad_cuotas_js = "6") {
+        precio4 = precio3 * 2.5;
+        //return precio4;
+        console.log (precio4);
+    } {
+        precio4 = precio3 * 3;
+        //return precio4;
+        console.log (precio4);
+    }
+} */
 
 
 //TIPO CONSUMIDOR
@@ -155,11 +230,27 @@ function tipo_de_consumidor (e) {
     tipo_consumidor.innerHTML = forma_consumidor;  
 } 
 
+
+let precio5;
+
 function consumidor_js () {
     let forma_consumidor_js = document.getElementById('tipo_consumidor_js').value;
     
-    console.log(forma_consumidor_js);
+    //console.log(forma_consumidor_js);
     //return forma_consumidor_js;
+
+    if (forma_consumidor_js === "1") {
+
+        precio5 = precio4 * 1.21;
+        return precio5;
+        //console.log (precio5);
+
+    } else {
+
+        precio5 = precio4;
+        return precio5;
+        //console.log (precio5);
+    }
 }
 
 //BOTON FINAL
@@ -170,7 +261,7 @@ function boton_pago (e) {
     e. preventDefault();
 
     boton_de_pago = document.getElementById("boton_final");
-    texto_boton_pago += '<button id="boton_pagar" type="button" onclick=" calcular_presupuesto(); cuotas_js(); consumidor_js()" class="btn btn-light center">Calculá tu viaje</button>';
+    texto_boton_pago += '<button id="boton_pagar" type="button" onclick=" calcular_presupuesto(); consumidor_js()" class="btn btn-light center">Calculá tu viaje</button>';
     boton_de_pago.innerHTML = texto_boton_pago; 
 }
 
@@ -195,17 +286,9 @@ function calcular_presupuesto(){
     let destino_recuperado_js = document.getElementById ("tu_destino_js");
     destino_recuperado_js.innerHTML = tu_destino;
 
-    let total_recuperado_js = document.getElementsById ("total_js");
-    let texto_total_recuperado_js = 0; //funcion sumatoria
-    total_recuperado_js.innerHTML = texto_total_recuperado_js;
+    let total_recuperado_js = document.getElementById ("total_js");
+    total_recuperado_js.innerHTML = precio5;
 } 
-
-
-
-function sumatoria(){
-    
-}
-
 
 
 //Eventos

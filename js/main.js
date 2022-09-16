@@ -36,7 +36,7 @@ function guardar_sesion (e) {
 }
 
 
-
+//Para este Alert que necesita interrumpir el flujo y requiere una respuesta por parte del usuario es mejor elección Sweet Alert
 
 
 

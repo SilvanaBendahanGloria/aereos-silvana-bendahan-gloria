@@ -27,6 +27,8 @@ function borrar_storage (e) {
         },
 )};
 
+//Para este Alert que necesita interrumpir el flujo y requiere una respuesta por parte del usuario es mejor elección Sweet Alert
+
 
 //CIUDADES
 class Destino {
@@ -155,7 +157,6 @@ function consumidor_js () {
     //return forma_consumidor_js;
 }
 
-
 //BOTON FINAL
 let boton_de_pago;
 let texto_boton_pago;
@@ -164,9 +165,11 @@ function boton_pago (e) {
     e. preventDefault();
 
     boton_de_pago = document.getElementById("boton_final");
-    texto_boton_pago += '<button id="boton_pagar" type="button" onclick="calcular_presupuesto(); cuotas_js(); consumidor_js()" class="btn btn-light center">Calculá tu viaje</button>';
+    texto_boton_pago += '<button id="boton_pagar" type="button" onclick=" calcular_presupuesto(); cuotas_js(); consumidor_js()" class="btn btn-light center">Calculá tu viaje</button>';
     boton_de_pago.innerHTML = texto_boton_pago; 
 }
+
+
 
 
 //DEVOLUCION PRESUPUESTO
@@ -195,23 +198,57 @@ function calcular_presupuesto(){
 } 
 
 
+
 function sumatoria(){
     
 }
 
 
 
-
-
-
 //Eventos
+boton_reset.addEventListener("click", borrar_storage);
+
 boton_primer_paso.addEventListener("click", tomar_lugar);
 boton_primer_paso.addEventListener("click", tipo_de_viaje);
 boton_primer_paso.addEventListener("click", tomar_edades);
 boton_primer_paso.addEventListener("click", forma_de_pago);
 boton_primer_paso.addEventListener("click", tipo_de_consumidor);
 boton_primer_paso.addEventListener("click", boton_pago);
+boton_primer_paso.addEventListener("click", () => {
+    Toastify({
+        text: "Por viajes en Argentina clickeá acá",
+        duration: 3000,
+        destination: "https://sbg-viajes.000webhostapp.com/index.html",
+        newWindow: true,
+        gravity: "bottom",
+        position: "left",
+        stopOnFocus: true,
+        delay: 5000,
+        style: {
+            fontSize: "1em",
+            background: "violet",
+        }
+    }) .showToast ();
+});  //Para esta acción informativa es mejor Toastify ya que no interrumpe el flujo y es más discreta.
+
 
 //el boton de pago tiene funciones onclick en html generado en js
 
-boton_reset.addEventListener("click", borrar_storage);
+//el id del html
+$('#boton_final').on('click', (function(){
+
+Toastify({
+    text: "Consultá el clima en tu destino",
+    duration: 5000,
+    destination: "https://www.meteored.com.ar/",
+    newWindow: true,
+    gravity: "top",
+    position: "right",
+    
+    style: {
+        fontSize: "1em",
+        background: "violet",
+    }
+}) .showToast (); }));
+//JQuery para capturar un botón generado dinámicamente :)
+

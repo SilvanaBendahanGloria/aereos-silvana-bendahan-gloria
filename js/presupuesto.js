@@ -9,14 +9,14 @@ function borrar_storage (e) {
     e.preventDefault();
     
     Swal.fire({
-        imageUrl: 'https://unsplash.it/200',
+        imageUrl: 'https://placeimg.com/200/200/tech/grayscale',
         imageAlt: 'imágen random',
         title: '¿Estás seguro?',
         text: "Se borrarán todas tus cotizaciones!",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si!'
+        confirmButtonColor: 'green',
+        cancelButtonColor: 'grey',
+        confirmButtonText: 'Si, seguro!'
       })
       .then((result) => {
         if (result.isConfirmed) {
@@ -161,54 +161,35 @@ function forma_de_pago (e) {
 
         cantidad_cuotas = document.getElementById("cantidad_cuotas");
         let num_cuotas;
-        num_cuotas += '<select id="cantidad_cuotas_js" class="form-select"> <option value="">Seleccioná la cantidad de cuotas</option> <option value="3">3 cuotas</option> <option value="6">6 cuotas</option> <option value="12">12 cuotas</option></select>';
+        num_cuotas += '<select id="cantidad_cuotas_js" class="form-select"> <option value="">Seleccioná la cantidad de cuotas</option> <option value="3 CUOTAS">3 cuotas</option> <option value="6 CUOTAS">6 cuotas</option> <option value="12 CUOTAS">12 cuotas</option></select>';
         cantidad_cuotas.innerHTML = num_cuotas;  
-        
-
-        $('#cantidad_cuotas').on('change', function () {    
-            if (value = "3") {
-                precio4 = precio3 * 2;
-                return precio4;
-                //console.log (precio4);
-
-            } else if (value = "6") {vvvvvv//en 6 no devuelve valor
- 
-                precio4 = precio3 * 2.5;
-                return precio4;
-                //console.log (precio4);
-
-            } else {
-
-                precio4 = precio3 * 3;
-                return precio4;
-                //console.log (precio4);
-
-            } 
-        })
-    }
+   }    
 };
 
-/*
 function cuotas_js () {
+
     let cantidad_cuotas_js = document.getElementById('cantidad_cuotas_js').value;
   
     //console.log(cantidad_cuotas_js);
-    //return cantidad_cuotas_js;
+    //return cantidad_cuotas_js;   
 
-    if (cantidad_cuotas_js = "3") {
+    if (cantidad_cuotas_js === "3 CUOTAS") {
         precio4 = precio3 * 2;
-        //return precio4;
-        console.log (precio4);
-    } else if (cantidad_cuotas_js = "6") {
+        return precio4;
+        //console.log (precio4);
+
+    } else if (cantidad_cuotas_js === "6 CUOTAS") {
         precio4 = precio3 * 2.5;
-        //return precio4;
-        console.log (precio4);
-    } {
+        return precio4;
+        //console.log (precio4);
+
+    } else {
         precio4 = precio3 * 3;
-        //return precio4;
-        console.log (precio4);
+        return precio4;
+        //console.log (precio4);
     }
-} */
+};
+
 
 
 //TIPO CONSUMIDOR
@@ -226,20 +207,26 @@ function tipo_de_consumidor (e) {
 
     tipo_consumidor = document.getElementById("tipo_consumidor");
     let forma_consumidor;
-    forma_consumidor += '<select id="tipo_consumidor_js" class="form-select"> <option value="">Seleccioná que tipo de consumidor sos</option> <option value="1">Consumidor final</option> <option value="2">Necesito IVA discriminado</option></select>';
+    forma_consumidor += '<select id="tipo_consumidor_js" class="form-select"> <option value="">Seleccioná que tipo de consumidor sos</option> <option value="CON IVA">Consumidor final</option> <option value="SIN IVA">Necesito IVA discriminado</option></select>';
     tipo_consumidor.innerHTML = forma_consumidor;  
 } 
 
 
-let precio5;
+
+let forma_consumidor_js;
 
 function consumidor_js () {
-    let forma_consumidor_js = document.getElementById('tipo_consumidor_js').value;
+    forma_consumidor_js = document.getElementById('tipo_consumidor_js').value;
     
     //console.log(forma_consumidor_js);
-    //return forma_consumidor_js;
+    return forma_consumidor_js;
+}
 
-    if (forma_consumidor_js === "1") {
+
+let precio5;
+
+function calculo_final () {
+    if (forma_consumidor_js === "CON IVA") {
 
         precio5 = precio4 * 1.21;
         return precio5;
@@ -253,6 +240,8 @@ function consumidor_js () {
     }
 }
 
+
+
 //BOTON FINAL
 let boton_de_pago;
 let texto_boton_pago;
@@ -261,7 +250,7 @@ function boton_pago (e) {
     e. preventDefault();
 
     boton_de_pago = document.getElementById("boton_final");
-    texto_boton_pago += '<button id="boton_pagar" type="button" onclick=" calcular_presupuesto(); consumidor_js()" class="btn btn-light center">Calculá tu viaje</button>';
+    texto_boton_pago += '<button id="boton_pagar" type="button" onclick=" calcular_presupuesto(); consumidor_js(), cuotas_js(), calculo_final()" class="btn btn-light center">Calculá tu viaje</button>';
     boton_de_pago.innerHTML = texto_boton_pago; 
 }
 
@@ -300,6 +289,7 @@ boton_primer_paso.addEventListener("click", tomar_edades);
 boton_primer_paso.addEventListener("click", forma_de_pago);
 boton_primer_paso.addEventListener("click", tipo_de_consumidor);
 boton_primer_paso.addEventListener("click", boton_pago);
+
 boton_primer_paso.addEventListener("click", () => {
     Toastify({
         text: "Por viajes en Argentina clickeá acá",
@@ -337,5 +327,5 @@ $('#boton_final').on('click', (function(){
         }
     }) .showToast (); 
 }));
-//JQuery para capturar un botón generado dinámicamente :)
+//JQuery para capturar un botón generado dinámicamente
 

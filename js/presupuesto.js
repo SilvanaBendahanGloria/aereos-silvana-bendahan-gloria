@@ -1,5 +1,5 @@
 //Variables
-let impuesto_dolares = 1.65;
+let impuesto_dolares = 1.75;
 
 let boton_primer_paso = document.getElementById("boton_primer_paso");
 let boton_reset = document.getElementById("boton_reset");
@@ -28,6 +28,17 @@ function borrar_storage (e) {
 )}; //Para este Alert que necesita interrumpir el flujo y requiere una respuesta por parte del usuario es mejor elección Sweet Alert
 
 
+let convertidor;
+
+fetch ("https://api.bluelytics.com.ar/v2/latest")
+.then (response => response.json())
+.then (data => {
+    
+    console.log (data)
+    convertidor = data.oficial.value_sell;
+    return convertidor;
+})
+
 
 //CIUDADES
 class Destino {
@@ -38,7 +49,8 @@ class Destino {
     }
 
     impuestos () {
-        return this.tarifa * impuesto_dolares;
+        //console.log (this.tarifa * convertidor * impuesto_dolares);
+        return this.tarifa * convertidor * impuesto_dolares;
     }   
 };
     
@@ -156,12 +168,12 @@ function forma_de_pago (e) {
     } else {
         texto_cuotas = document.getElementById("texto_cuotas");
         let titulo_cuotas;
-        titulo_cuotas += '<h4> ¿En cuantas cuotas vas a pagar? </h4>';
+        titulo_cuotas = '<h4> ¿En cuantas cuotas vas a pagar? </h4>';
         texto_cuotas.innerHTML = titulo_cuotas;
 
         cantidad_cuotas = document.getElementById("cantidad_cuotas");
         let num_cuotas;
-        num_cuotas += '<select id="cantidad_cuotas_js" class="form-select"> <option value="">Seleccioná la cantidad de cuotas</option> <option value="3 CUOTAS">3 cuotas</option> <option value="6 CUOTAS">6 cuotas</option> <option value="12 CUOTAS">12 cuotas</option></select>';
+        num_cuotas = '<select id="cantidad_cuotas_js" class="form-select"> <option value="">Seleccioná la cantidad de cuotas</option> <option value="3 CUOTAS">3 cuotas</option> <option value="6 CUOTAS">6 cuotas</option> <option value="12 CUOTAS">12 cuotas</option></select>';
         cantidad_cuotas.innerHTML = num_cuotas;  
    }    
 };
@@ -201,13 +213,13 @@ function tipo_de_consumidor (e) {
 
     texto_consumidor = document.getElementById("texto_consumidor");
     let titulo_consumidor;
-    titulo_consumidor += '<h3> 5) ¿Que tipo de factura necesitas? </h3>';
+    titulo_consumidor = '<h3> 5) ¿Que tipo de factura necesitas? </h3>';
     texto_consumidor.innerHTML = titulo_consumidor;
 
 
     tipo_consumidor = document.getElementById("tipo_consumidor");
     let forma_consumidor;
-    forma_consumidor += '<select id="tipo_consumidor_js" class="form-select"> <option value="">Seleccioná que tipo de consumidor sos</option> <option value="CON IVA">Consumidor final</option> <option value="SIN IVA">Necesito IVA discriminado</option></select>';
+    forma_consumidor = '<select id="tipo_consumidor_js" class="form-select"> <option value="">Seleccioná que tipo de consumidor sos</option> <option value="CON IVA">Consumidor final</option> <option value="SIN IVA">Necesito IVA discriminado</option></select>';
     tipo_consumidor.innerHTML = forma_consumidor;  
 } 
 
@@ -229,13 +241,13 @@ function calculo_final () {
     if (forma_consumidor_js === "CON IVA") {
 
         precio5 = precio4 * 1.21;
-        return precio5;
+        localStorage.setItem ("precio_a_devolver", precio5);
         //console.log (precio5);
 
     } else {
 
         precio5 = precio4;
-        return precio5;
+        localStorage.setItem ("precio_a_devolver", precio5);
         //console.log (precio5);
     }
 }
@@ -250,7 +262,7 @@ function boton_pago (e) {
     e. preventDefault();
 
     boton_de_pago = document.getElementById("boton_final");
-    texto_boton_pago += '<button id="boton_pagar" type="button" onclick=" calcular_presupuesto(); consumidor_js(), cuotas_js(), calculo_final()" class="btn btn-light center">Calculá tu viaje</button>';
+    texto_boton_pago = '<button id="boton_pagar" type="button" onclick=" calcular_presupuesto(); consumidor_js(), cuotas_js(), calculo_final()" class="btn btn-light center">Calculá tu viaje</button>';
     boton_de_pago.innerHTML = texto_boton_pago; 
 }
 
@@ -261,7 +273,7 @@ let texto_presupuesto;
 
 function calcular_presupuesto(){
     texto_final = document.getElementById("total_texto");
-    texto_presupuesto += '<h2> <span id="pasajero_js"></span>: El total de tu viaje desde <span id="residencia_js"></span> a <span id="tu_destino_js"></span> es de USD: <span id="total_js"> </span></h2>';
+    texto_presupuesto = '<h2> <span id="pasajero_js"></span>: El total de tu viaje desde <span id="residencia_js"></span> a <span id="tu_destino_js"></span> es de $ARS: <span id="total_js"> </span></h2>';
     texto_final.innerHTML = texto_presupuesto;
    
     let pasajero_recuperado_js = document.getElementById ("pasajero_js");
@@ -276,7 +288,8 @@ function calcular_presupuesto(){
     destino_recuperado_js.innerHTML = tu_destino;
 
     let total_recuperado_js = document.getElementById ("total_js");
-    total_recuperado_js.innerHTML = precio5;
+    let texto_total_js = localStorage.getItem ("precio_a_devolver");
+    total_recuperado_js.innerHTML = texto_total_js;
 } 
 
 

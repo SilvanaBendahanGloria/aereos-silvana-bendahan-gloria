@@ -37,6 +37,7 @@ fetch ("https://api.bluelytics.com.ar/v2/latest")
     console.log (data)
     convertidor = data.oficial.value_sell;
     return convertidor;
+    //console.log (convertidor);
 })
 
 
@@ -102,8 +103,9 @@ function tipo_de_viaje (e) {
         precio2 = precio1 * 0.75;
         return precio2;
         //console.log (precio2);
-    }; 
-    {
+
+    } else {
+
         precio2 = precio1; 
         return precio2;
         //console.log (precio2);
@@ -235,18 +237,19 @@ function consumidor_js () {
 }
 
 
-let precio5;
-
 function calculo_final () {
+
+    let precio5;
+
     if (forma_consumidor_js === "CON IVA") {
 
-        precio5 = precio4 * 1.21;
+        precio5 = Math.round(precio4 * 1.21);
         localStorage.setItem ("precio_a_devolver", precio5);
         //console.log (precio5);
 
     } else {
 
-        precio5 = precio4;
+        precio5 = Math.round(precio4);
         localStorage.setItem ("precio_a_devolver", precio5);
         //console.log (precio5);
     }
@@ -268,10 +271,11 @@ function boton_pago (e) {
 
 
 //DEVOLUCION PRESUPUESTO
-let texto_final;
-let texto_presupuesto;
 
 function calcular_presupuesto(){
+    let texto_final;
+    let texto_presupuesto;
+
     texto_final = document.getElementById("total_texto");
     texto_presupuesto = '<h2> <span id="pasajero_js"></span>: El total de tu viaje desde <span id="residencia_js"></span> a <span id="tu_destino_js"></span> es de $ARS: <span id="total_js"> </span></h2>';
     texto_final.innerHTML = texto_presupuesto;
@@ -290,6 +294,7 @@ function calcular_presupuesto(){
     let total_recuperado_js = document.getElementById ("total_js");
     let texto_total_js = localStorage.getItem ("precio_a_devolver");
     total_recuperado_js.innerHTML = texto_total_js;
+    
 } 
 
 
@@ -307,7 +312,7 @@ boton_primer_paso.addEventListener("click", () => {
     Toastify({
         text: "Por viajes en Argentina clickeá acá",
         duration: 3000,
-        destination: "https://sbg-viajes.000webhostapp.com/index.html",
+        destination: "https://sbg-viajes.netlify.app/",
         newWindow: true,
         gravity: "bottom",
         position: "left",

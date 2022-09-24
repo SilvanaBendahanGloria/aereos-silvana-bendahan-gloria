@@ -236,22 +236,21 @@ function consumidor_js () {
     return forma_consumidor_js;
 }
 
+let precio5;
 
 function calculo_final () {
-
-    let precio5;
 
     if (forma_consumidor_js === "CON IVA") {
 
         precio5 = Math.round(precio4 * 1.21);
-        localStorage.setItem ("precio_a_devolver", precio5);
         //console.log (precio5);
+        return precio5;
 
     } else {
 
         precio5 = Math.round(precio4);
-        localStorage.setItem ("precio_a_devolver", precio5);
         //console.log (precio5);
+        return precio5;
     }
 }
 
@@ -265,7 +264,7 @@ function boton_pago (e) {
     e. preventDefault();
 
     boton_de_pago = document.getElementById("boton_final");
-    texto_boton_pago = '<button id="boton_pagar" type="button" onclick=" calcular_presupuesto(); consumidor_js(), cuotas_js(), calculo_final()" class="btn btn-light center">Calculá tu viaje</button>';
+    texto_boton_pago = '<button id="boton_pagar" type="button" onclick= "consumidor_js(), cuotas_js(), calculo_final(), calcular_presupuesto();" class="btn btn-light center">Calculá tu viaje</button>';
     boton_de_pago.innerHTML = texto_boton_pago; 
 }
 
@@ -292,8 +291,7 @@ function calcular_presupuesto(){
     destino_recuperado_js.innerHTML = tu_destino;
 
     let total_recuperado_js = document.getElementById ("total_js");
-    let texto_total_js = localStorage.getItem ("precio_a_devolver");
-    total_recuperado_js.innerHTML = texto_total_js;
+    total_recuperado_js.innerHTML = precio5;
     
 } 
 

@@ -276,7 +276,7 @@ function calcular_presupuesto(){
     let texto_presupuesto;
 
     texto_final = document.getElementById("total_texto");
-    texto_presupuesto = '<h2> <span id="pasajero_js"></span>: El total de tu viaje desde <span id="residencia_js"></span> a <span id="tu_destino_js"></span> es de $ARS: <span id="total_js"> </span></h2>';
+    texto_presupuesto = '<h3> <span id="pasajero_js"></span>: El total de tu viaje desde <span id="residencia_js"></span> a <span id="tu_destino_js"></span> es de $ARS: <span id="total_js"> </span></h3>';
     texto_final.innerHTML = texto_presupuesto;
    
     let pasajero_recuperado_js = document.getElementById ("pasajero_js");

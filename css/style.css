@@ -63,11 +63,12 @@ header h1 {
 }
 
 @media screen and (max-width: 450px) {
-  header {
-    background-image: none;
-    background-color: #22252c;
+  .main_index .imagen {
+    width: 100vw;
+    padding-top: 10vh;
+    padding-right: 25vw;
   }
-  header div a {
+  .main_index .imagen a {
     font-size: 2em;
   }
 }
@@ -82,11 +83,11 @@ header h1 {
   font-size: 2.5em;
 }
 #main_presupuesto h3 {
-  line-height: 1.5em;
+  line-height: 2em;
   font-size: 2em;
 }
 #main_presupuesto h4 {
-  line-height: 1em;
+  line-height: 2em;
   font-size: 1.5em;
 }
 
@@ -95,6 +96,18 @@ header h1 {
   margin-bottom: 5vh;
 }
 
+@media screen and (max-width: 450px) {
+  header h1 {
+    font-size: 1.5em;
+    line-height: 2 em;
+  }
+  #main_presupuesto h2, #main_presupuesto h3, #main_presupuesto h4 {
+    font-size: 1.2em;
+  }
+  .edades {
+    text-align: end;
+  }
+}
 footer {
   background-color: #22252c;
 }

@@ -31,12 +31,15 @@
 }
     
 @media screen and (max-width:450px) {
-    header {
-        background-image: none;
-        background-color: #22252c;
+    .main_index {
+        .imagen {
+            width: 100vw;
+            padding-top: 10vh;
+            padding-right: 25vw;
 
-        div a {
-           font-size: 2em; 
+            a {
+                font-size: 2em;
+            }
         }
     }
 }

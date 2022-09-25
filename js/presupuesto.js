@@ -291,7 +291,7 @@ function calcular_presupuesto(){
     destino_recuperado_js.innerHTML = tu_destino;
 
     let total_recuperado_js = document.getElementById ("total_js");
-    total_recuperado_js.innerHTML = precio5;
+    total_recuperado_js.innerHTML = precio5.toLocaleString('es');;
     
 } 
 

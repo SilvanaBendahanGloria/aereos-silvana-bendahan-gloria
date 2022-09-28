@@ -177,6 +177,8 @@ function forma_de_pago (e) {
         let num_cuotas;
         num_cuotas = '<select id="cantidad_cuotas_js" class="form-select"> <option value="">Seleccioná la cantidad de cuotas</option> <option value="3 CUOTAS">3 cuotas</option> <option value="6 CUOTAS">6 cuotas</option> <option value="12 CUOTAS">12 cuotas</option></select>';
         cantidad_cuotas.innerHTML = num_cuotas;  
+
+        cuotas_js ();
    }    
 };
 
@@ -264,7 +266,7 @@ function boton_pago (e) {
     e. preventDefault();
 
     boton_de_pago = document.getElementById("boton_final");
-    texto_boton_pago = '<button id="boton_pagar" type="button" onclick= "consumidor_js(), cuotas_js(), calculo_final(), calcular_presupuesto();" class="btn btn-light center">Calculá tu viaje</button>';
+    texto_boton_pago = '<button id="boton_pagar" type="button" onclick= "consumidor_js(), calculo_final(), calcular_presupuesto();" class="btn btn-light center">Calculá tu viaje</button>';
     boton_de_pago.innerHTML = texto_boton_pago; 
 }
 

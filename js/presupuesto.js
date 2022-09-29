@@ -270,12 +270,24 @@ function boton_pago (e) {
     boton_de_pago.innerHTML = texto_boton_pago; 
 }
 
+//BOTON VOLVER ATRAS
+function volver_atras() {
+    texto_cuotas.innerHTML = '';
+    cantidad_cuotas.innerHTML = '';
+    texto_consumidor.innerHTML = '';
+    tipo_consumidor.innerHTML = '';
+    boton_de_pago.innerHTML = '';
+    texto_final.innerHTML = '';
+}
+
 
 //DEVOLUCION PRESUPUESTO
+let link_recalcular;
+let texto_link;
+let texto_final;
+let texto_presupuesto;
 
-function calcular_presupuesto(){
-    let texto_final;
-    let texto_presupuesto;
+function calcular_presupuesto(){ 
 
     texto_final = document.getElementById("total_texto");
     texto_presupuesto = '<h3> <span id="pasajero_js"></span>: El total de tu viaje desde <span id="residencia_js"></span> a <span id="tu_destino_js"></span> es de $ARS: <span id="total_js"> </span></h3>';
@@ -293,8 +305,12 @@ function calcular_presupuesto(){
     destino_recuperado_js.innerHTML = tu_destino;
 
     let total_recuperado_js = document.getElementById ("total_js");
-    total_recuperado_js.innerHTML = precio5.toLocaleString('es');;
+    total_recuperado_js.innerHTML = precio5.toLocaleString('es');
+
     
+    link_recalcular = document.getElementById("recalcular");
+    texto_link = '<button  id="recalcular_js" type="button" class = "btn btn-secondary center" onclick = "volver_atras()"> Seleccionar otra forma de pago</button>';
+    link_recalcular.innerHTML = texto_link; 
 } 
 
 

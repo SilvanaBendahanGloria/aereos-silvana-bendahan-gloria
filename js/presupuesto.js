@@ -272,12 +272,13 @@ function boton_pago (e) {
 
 //BOTON VOLVER ATRAS
 function volver_atras() {
-    texto_cuotas.innerHTML = '';
-    cantidad_cuotas.innerHTML = '';
+    
     texto_consumidor.innerHTML = '';
     tipo_consumidor.innerHTML = '';
     boton_de_pago.innerHTML = '';
     texto_final.innerHTML = '';
+    texto_cuotas.innerHTML = '';
+    cantidad_cuotas.innerHTML = '';
 }
 
 
